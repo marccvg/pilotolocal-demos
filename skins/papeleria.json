@@ -1,6 +1,6 @@
 {
   "slug": "papeleria",
-  "negocio_name": "Papelería El Lápiz",
+  "negocio_name": "Tu papelería",
   "negocio_emoji": "✏️",
   "admin_name": "Panel papelería — tu asistente",
   "owner_name": "Jesús",
@@ -8,18 +8,73 @@
   "tono": "familiar-practico",
   "greeting_tag": "Tu papelería de siempre en el barrio",
   "categorias": [
-    { "key": "papeleria",   "label": "📒 Papelería",         "sub": "libretas, agendas, carpetas" },
-    { "key": "regalo",      "label": "🎁 Regalo",            "sub": "detalles, cestas, personalizado" },
-    { "key": "fiestas",     "label": "🎈 Fiestas infantiles","sub": "cumpleaños, piñatas, globos" },
-    { "key": "personaliz",  "label": "✏️ Personalización",   "sub": "nombre bordado o estampado" },
-    { "key": "escolar",     "label": "🎒 Material escolar",   "sub": "libros, mochilas, estuches" }
+    {
+      "key": "papeleria",
+      "label": "📒 Papelería",
+      "sub": "libretas, agendas, carpetas"
+    },
+    {
+      "key": "regalo",
+      "label": "🎁 Regalo",
+      "sub": "detalles, cestas, personalizado"
+    },
+    {
+      "key": "fiestas",
+      "label": "🎈 Fiestas infantiles",
+      "sub": "cumpleaños, piñatas, globos"
+    },
+    {
+      "key": "personaliz",
+      "label": "✏️ Personalización",
+      "sub": "nombre bordado o estampado"
+    },
+    {
+      "key": "escolar",
+      "label": "🎒 Material escolar",
+      "sub": "libros, mochilas, estuches"
+    }
   ],
   "productos_sample": [
-    { "id": "p1", "cat": "fiestas",    "img": "🎈", "nombre": "Pack cumpleaños 10 niños",     "precio": "25€", "variantes": "temática Spiderman/Frozen/Pokémon" },
-    { "id": "p2", "cat": "escolar",    "img": "🎒", "nombre": "Mochila escolar grande",       "precio": "32€", "variantes": "varios diseños" },
-    { "id": "p3", "cat": "papeleria",  "img": "📒", "nombre": "Agenda escolar 2026/27",       "precio": "14€", "variantes": "día/página o semana/vista" },
-    { "id": "p4", "cat": "regalo",     "img": "🎁", "nombre": "Cesta regalo papelería lujo",  "precio": "45€", "variantes": "a elegir pluma, cuaderno, marcapáginas" },
-    { "id": "p5", "cat": "personaliz", "img": "✏️", "nombre": "Lápiz grabado con nombre",     "precio": "3€",  "variantes": "madera o negro" }
+    {
+      "id": "p1",
+      "cat": "fiestas",
+      "img": "🎈",
+      "nombre": "Pack cumpleaños 10 niños",
+      "precio": "25€",
+      "variantes": "temática Spiderman/Frozen/Pokémon"
+    },
+    {
+      "id": "p2",
+      "cat": "escolar",
+      "img": "🎒",
+      "nombre": "Mochila escolar grande",
+      "precio": "32€",
+      "variantes": "varios diseños"
+    },
+    {
+      "id": "p3",
+      "cat": "papeleria",
+      "img": "📒",
+      "nombre": "Agenda escolar 2026/27",
+      "precio": "14€",
+      "variantes": "día/página o semana/vista"
+    },
+    {
+      "id": "p4",
+      "cat": "regalo",
+      "img": "🎁",
+      "nombre": "Cesta regalo papelería lujo",
+      "precio": "45€",
+      "variantes": "a elegir pluma, cuaderno, marcapáginas"
+    },
+    {
+      "id": "p5",
+      "cat": "personaliz",
+      "img": "✏️",
+      "nombre": "Lápiz grabado con nombre",
+      "precio": "3€",
+      "variantes": "madera o negro"
+    }
   ],
   "pregunta_variante_text": "¿Qué temática o variante?",
   "pregunta_fecha_text": "¿Para cuándo lo necesitas?",
