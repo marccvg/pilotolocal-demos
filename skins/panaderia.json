@@ -40,16 +40,57 @@
       "cat": "tartas",
       "img": "🎂",
       "nombre": "Tarta personalizada 8 personas",
-      "precio": "desde 38€",
-      "variantes": "chocolate, fruta o mix · texto incluido"
+      "precio": "38€",
+      "variantes": "chocolate, fruta o mix · texto incluido",
+      "precio_desde": "38€",
+      "variantes_precio": [
+        {
+          "opcion": "8 personas",
+          "precio": 38,
+          "precio_label": "38€"
+        },
+        {
+          "opcion": "12 personas",
+          "precio": 52,
+          "precio_label": "52€"
+        },
+        {
+          "opcion": "16 personas",
+          "precio": 68,
+          "precio_label": "68€"
+        },
+        {
+          "opcion": "20 personas",
+          "precio": 85,
+          "precio_label": "85€"
+        }
+      ]
     },
     {
       "id": "p2",
       "cat": "tartas",
       "img": "🎂",
       "nombre": "Tarta 3 pisos (boda/comunión)",
-      "precio": "desde 95€",
-      "variantes": "sabor a elegir · decoración personalizada"
+      "precio": "95€",
+      "variantes": "sabor a elegir · decoración personalizada",
+      "precio_desde": "95€",
+      "variantes_precio": [
+        {
+          "opcion": "25 personas",
+          "precio": 95,
+          "precio_label": "95€"
+        },
+        {
+          "opcion": "40 personas",
+          "precio": 145,
+          "precio_label": "145€"
+        },
+        {
+          "opcion": "60 personas",
+          "precio": 210,
+          "precio_label": "210€"
+        }
+      ]
     },
     {
       "id": "p3",
@@ -57,15 +98,41 @@
       "img": "🥖",
       "nombre": "Hogaza masa madre (800 g)",
       "precio": "4,50€",
-      "variantes": "blanca o integral"
+      "variantes": "blanca o integral",
+      "precio_desde": "4,50€",
+      "variantes_precio": [
+        {
+          "opcion": "unidad 800g",
+          "precio": 4.5,
+          "precio_label": "4,50€"
+        }
+      ]
     },
     {
       "id": "p4",
       "cat": "temporada",
       "img": "👑",
       "nombre": "Roscón de Reyes (encargo)",
-      "precio": "desde 18€",
-      "variantes": "6, 8 o 12 personas · con/sin nata"
+      "precio": "18€",
+      "variantes": "6, 8 o 12 personas · con/sin nata",
+      "precio_desde": "18€",
+      "variantes_precio": [
+        {
+          "opcion": "6 personas",
+          "precio": 18,
+          "precio_label": "18€"
+        },
+        {
+          "opcion": "8 personas",
+          "precio": 24,
+          "precio_label": "24€"
+        },
+        {
+          "opcion": "12 personas",
+          "precio": 32,
+          "precio_label": "32€"
+        }
+      ]
     },
     {
       "id": "p5",
@@ -73,7 +140,15 @@
       "img": "🥐",
       "nombre": "Caja surtida bollería (12 u.)",
       "precio": "14€",
-      "variantes": "surtido clásico o sin gluten"
+      "variantes": "surtido clásico o sin gluten",
+      "precio_desde": "14€",
+      "variantes_precio": [
+        {
+          "opcion": "caja 12 u.",
+          "precio": 14,
+          "precio_label": "14€"
+        }
+      ]
     },
     {
       "id": "p6",
@@ -81,7 +156,15 @@
       "img": "🧀",
       "nombre": "Tarta de queso casera",
       "precio": "22€",
-      "variantes": "con mermelada frutos rojos opcional"
+      "variantes": "con mermelada frutos rojos opcional",
+      "precio_desde": "22€",
+      "variantes_precio": [
+        {
+          "opcion": "unidad",
+          "precio": 22,
+          "precio_label": "22€"
+        }
+      ]
     },
     {
       "id": "p7",
@@ -89,7 +172,15 @@
       "img": "🥕",
       "nombre": "Tarta de zanahoria con nueces",
       "precio": "24€",
-      "variantes": "cobertura queso crema · porción grande"
+      "variantes": "cobertura queso crema · porción grande",
+      "precio_desde": "24€",
+      "variantes_precio": [
+        {
+          "opcion": "unidad",
+          "precio": 24,
+          "precio_label": "24€"
+        }
+      ]
     },
     {
       "id": "p8",
@@ -97,7 +188,15 @@
       "img": "🥖",
       "nombre": "Pan integral de centeno",
       "precio": "3,80€",
-      "variantes": "500g · con pipas o sin"
+      "variantes": "500g · con pipas o sin",
+      "precio_desde": "3,80€",
+      "variantes_precio": [
+        {
+          "opcion": "unidad 500g",
+          "precio": 3.8,
+          "precio_label": "3,80€"
+        }
+      ]
     },
     {
       "id": "p9",
@@ -105,23 +204,57 @@
       "img": "🌾",
       "nombre": "Pan de espelta",
       "precio": "4,20€",
-      "variantes": "fermentación 24h"
+      "variantes": "fermentación 24h",
+      "precio_desde": "4,20€",
+      "variantes_precio": [
+        {
+          "opcion": "unidad",
+          "precio": 4.2,
+          "precio_label": "4,20€"
+        }
+      ]
     },
     {
       "id": "p10",
       "cat": "bolleria",
       "img": "🥐",
       "nombre": "Cruasán mantequilla francesa",
-      "precio": "1,80€/u",
-      "variantes": "clásico o con chocolate"
+      "precio": "1,80€",
+      "variantes": "clásico o con chocolate",
+      "precio_desde": "1,80€",
+      "variantes_precio": [
+        {
+          "opcion": "1 unidad",
+          "precio": 1.8,
+          "precio_label": "1,80€"
+        },
+        {
+          "opcion": "6 unidades",
+          "precio": 10,
+          "precio_label": "10€"
+        }
+      ]
     },
     {
       "id": "p11",
       "cat": "bolleria",
       "img": "🥮",
       "nombre": "Napolitana de crema",
-      "precio": "1,60€/u",
-      "variantes": "crema o chocolate"
+      "precio": "1,60€",
+      "variantes": "crema o chocolate",
+      "precio_desde": "1,60€",
+      "variantes_precio": [
+        {
+          "opcion": "1 unidad",
+          "precio": 1.6,
+          "precio_label": "1,60€"
+        },
+        {
+          "opcion": "6 unidades",
+          "precio": 9,
+          "precio_label": "9€"
+        }
+      ]
     },
     {
       "id": "p12",
@@ -129,7 +262,15 @@
       "img": "🍪",
       "nombre": "Pastas de té surtidas (250g)",
       "precio": "9€",
-      "variantes": "mezcla de 8 variedades"
+      "variantes": "mezcla de 8 variedades",
+      "precio_desde": "9€",
+      "variantes_precio": [
+        {
+          "opcion": "250g surtido",
+          "precio": 9,
+          "precio_label": "9€"
+        }
+      ]
     },
     {
       "id": "p13",
@@ -137,7 +278,20 @@
       "img": "🧁",
       "nombre": "Cupcakes decorados (6 u.)",
       "precio": "15€",
-      "variantes": "sabores a elegir"
+      "variantes": "sabores a elegir",
+      "precio_desde": "15€",
+      "variantes_precio": [
+        {
+          "opcion": "6 cupcakes",
+          "precio": 15,
+          "precio_label": "15€"
+        },
+        {
+          "opcion": "12 cupcakes",
+          "precio": 28,
+          "precio_label": "28€"
+        }
+      ]
     },
     {
       "id": "p14",
@@ -145,7 +299,25 @@
       "img": "🎃",
       "nombre": "Panellets de Todos los Santos",
       "precio": "22€/kg",
-      "variantes": "piñones, almendra, coco, chocolate"
+      "variantes": "piñones, almendra, coco, chocolate",
+      "precio_desde": "22€/kg",
+      "variantes_precio": [
+        {
+          "opcion": "250g",
+          "precio": 6.5,
+          "precio_label": "6,50€"
+        },
+        {
+          "opcion": "500g",
+          "precio": 12,
+          "precio_label": "12€"
+        },
+        {
+          "opcion": "1 kg",
+          "precio": 22,
+          "precio_label": "22€"
+        }
+      ]
     }
   ],
   "pregunta_variante_text": "¿Qué sabor y decoración te gustaría?",
@@ -219,5 +391,17 @@
       }
     ],
     "cierre": "«15 días gratis, yo lo configuro con vuestros productos. ¿Me das un número para hablarte esta semana?»"
-  }
+  },
+  "entregas": [
+    {
+      "opcion": "🏪 Recoger en tienda",
+      "precio": 0,
+      "precio_label": "gratis"
+    },
+    {
+      "opcion": "🛵 Envío a domicilio (Vila-real)",
+      "precio": 3,
+      "precio_label": "+3€"
+    }
+  ]
 }

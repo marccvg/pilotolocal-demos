@@ -165,7 +165,8 @@ function buildSteps(skin) {
       const catKey = cats[2] ? cats[2].key : cats[0].key;
       const prodsCat = p.filter(x => x.cat === catKey);
       const label = cats[2] ? cats[2].label : cats[0].label;
-      const listado = prodsCat.map(x => `${x.img} <strong>${x.nombre}</strong> · ${x.precio}`).join('<br>');
+      const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
+      const listado = prodsCat.map(x => `${x.img} <strong>${x.nombre}</strong> · ${priceLabel(x)}`).join('<br>');
       return { chat: 'patient', action: 'msg', payload: {
         dir: 'in',
         text: `<strong>${label}</strong><br><br>${listado}<br><br>Toca el que quieras encargar:`,
@@ -175,12 +176,13 @@ function buildSteps(skin) {
     (function(){
       const catKey = cats[2] ? cats[2].key : cats[0].key;
       const prodsCat = p.filter(x => x.cat === catKey);
+      const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
       return { chat: 'patient', action: 'list-message', payload: {
         btnText: 'Elegir producto',
         sheetTitle: 'Productos',
         sections: [{
           header: 'Toca para encargar',
-          items: prodsCat.map(x => ({ text: `${x.img} ${x.nombre}`, sub: x.precio }))
+          items: prodsCat.map(x => ({ text: `${x.img} ${x.nombre}`, sub: priceLabel(x) }))
         }]
       }};
     })(),
@@ -204,6 +206,14 @@ function buildSteps(skin) {
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Para cuántas personas?', time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: (prodA.variantes_precio || [{opcion:'estándar',precio_label:prodA.precio}]).slice(0,4).map(v => ({ text: `${v.opcion} · ${v.precio_label}` })) },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: `12 personas · 52€`, time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
       dir: 'in', text: '¿Para cuándo la necesitas?', time: '17:31'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
@@ -214,6 +224,14 @@ function buildSteps(skin) {
     ]},
     { chat: 'patient', action: 'msg', payload: {
       dir: 'out', text: 'Fin de semana', time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Dónde la quieres?', time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: (skin.entregas || [{opcion:'🏪 Recoger en tienda',precio_label:'gratis'}]).map(e => ({ text: `${e.opcion} · ${e.precio_label}` })) },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '🛵 Envío a domicilio · +3€', time: '17:31', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
@@ -252,7 +270,7 @@ function buildSteps(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `📋 <strong>Confirma tu encargo</strong><br><br>${prodA.img} ${prodA.nombre} · ${prodA.precio}<br>📅 Sábado · 📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456`,
+      text: `📋 <strong>Confirma tu encargo</strong><br><br>${prodA.img} ${prodA.nombre} — 12 personas<br>📅 Sábado · 🛵 Envío a domicilio<br>📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456<br><br>──────────<br>Tarta 12 personas · <strong>52€</strong><br>Envío a domicilio · <strong>3€</strong><br><strong>TOTAL: 55€</strong>`,
       time: '17:33'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
@@ -279,7 +297,7 @@ function buildSteps(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🔔 <strong>Nuevo encargo</strong><br><br>${prodA.img} ${prodA.nombre} · ${prodA.precio}<br>📅 Sábado · 📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456`,
+      text: `🔔 <strong>Nuevo encargo · 55€</strong><br><br>${prodA.img} ${prodA.nombre} — 12 personas · 52€<br>📅 Sábado · 🛵 Envío a domicilio · +3€<br>📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456<br><br>Cliente ya ha visto el precio total y lo acepta ✓`,
       time: '17:33'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
