@@ -89,48 +89,63 @@
     "cat_label": "🎁 Lotes Navidad"
   },
   "guion": {
-    "entrada": "«Hola, soy Marc. Trabajo con charcuterías gourmet para gestionar encargos de empresa por WhatsApp. ¿Hacéis cestas o tablas para eventos de empresa?»",
+    "entrada": "«Hola, soy Marc. Estoy hablando con comercios locales como el vuestro para entender cómo gestionáis los contactos con clientes por internet y si hay cosas que os generan problemas en el día a día. ¿Tenéis dos minutos?»",
     "preguntas": [
       {
-        "q": "¿Esos encargos de empresa os llegan por WhatsApp?",
-        "si": "💚 Dolor confirmado — sigue",
-        "no": "¿Y por teléfono? ¿Tenéis lista de pedidos en papel?"
+        "q": "¿Hacéis encargos para eventos, empresa o cestas de temporada (navidad, comuniones)? ¿Por qué canal os llegan?",
+        "si": "💚 Sí + WA → fit alto",
+        "no": "No → preguntar si solo mostrador o si hacen alguna tabla para evento particular"
       },
       {
-        "q": "¿En Navidad os llegan muchos pedidos de empresa a la vez?",
-        "si": "💚 Caos navideño — punto clave",
-        "no": "¿Y para eventos como tablas de aperitivo, comuniones...?"
+        "q": "¿Cómo se comunican con vosotros los clientes cuando no están en la tienda? (WhatsApp, teléfono, Instagram DM, email, nada...)",
+        "si": "💚 Usan WA/IG → canal activo, hay dolor",
+        "no": "Solo presencial → menor fit, pero preguntar por qué (puede ser decisión o imposibilidad)"
       },
       {
-        "q": "¿Tenéis algún sistema para anotar los encargos o es todo en la cabeza / papel?",
-        "si": "💚 Sistema manual — dolor claro",
-        "no": "¿Qué sistema usáis? (Excel, agenda, app...)"
+        "q": "¿Quién gestiona esos mensajes? ¿Es siempre la misma persona o se reparte?",
+        "si": "💚 1 sola persona = cuello de botella claro",
+        "no": "Si se reparte → preguntar si pierden mensajes o se duplican respuestas"
       },
       {
-        "q": "¿Alguna vez se os ha colado un encargo que no visteis a tiempo?",
-        "si": "🎯 BINGO — muestra la demo ahora",
-        "no": "¿Y un pedido que llegó fuera de horario y respondisteis tarde?"
+        "q": "¿Cómo tenéis el catálogo? ¿Lo veis los clientes de alguna forma antes de venir? (web, Instagram, catálogo PDF, nada...)",
+        "si": "💚 Catálogo digital activo → podemos integrarlo en el bot",
+        "no": "No tienen → oportunidad: el bot puede ser el primer catálogo digital"
+      },
+      {
+        "q": "Cuando llega un pedido grande fuera de horario o estando en el mostrador con cola, ¿cómo lo gestionáis? ¿Habéis perdido alguno o respondido tarde?",
+        "si": "💚 Dolor concreto confirmado",
+        "no": "¿Y cuando toca cerrar y ha llegado un mensaje a última hora?"
+      },
+      {
+        "q": "¿Recibís reseñas en Google? ¿Hacéis algo para pedírselas a los clientes o depende de que ellos las dejen solos?",
+        "si": "💚 Nada activo → el bot puede pedir reseña al final del encargo (killer feature)",
+        "no": "Ya tienen mecanismo → preguntar cuál y si funciona"
+      },
+      {
+        "q": "¿Hay algún problema que os encontréis muchos días a la semana y que os quite tiempo o os genere estrés? (lo que sea)",
+        "si": "🎯 Dolor espontáneo revelado — toma nota literal",
+        "no": "No sale nada → preguntar por específico del vertical (siguiente)"
       }
     ],
-    "demo_trigger": "«¿Vemos en 1 minuto cómo el bot gestiona un encargo navideño de empresa solo?»",
+    "demo_trigger": "«¿Vemos en 1 minuto cómo quedaría un bot gestionando un encargo navideño y pidiendo reseña al final?»",
     "objeciones": [
       {
         "o": "«Ya lo gestionamos nosotros»",
-        "r": "«¿Y cuando están en el mostrador con cola y llega un WhatsApp de empresa?»"
+        "r": "«¿Y cuando están en el mostrador con cola y llega un WA de empresa?»"
       },
       {
         "o": "«No tenemos muchos encargos»",
-        "r": "«¿Y en Navidad? ¿Cuántas cestas hicisteis el año pasado?»"
+        "r": "«¿Y en Navidad? ¿Cuántas cestas el año pasado?»"
       },
       {
         "o": "«¿Funciona con nuestros productos?»",
-        "r": "«Lo configuro yo con vuestro catálogo exacto. Sin vosotros no lo toco.»"
+        "r": "«Lo configuro yo con vuestro catálogo exacto.»"
       },
       {
         "o": "«No queremos bots, queremos trato personal»",
-        "r": "«El bot solo recoge el encargo y confirma la fecha. Vosotros hacéis el jamón.»"
+        "r": "«El bot solo recoge el encargo y confirma. Vosotros hacéis el jamón.»"
       }
     ],
-    "cierre": "«Sin permanencia. 15 días gratis, yo lo configuro. Si no funciona, sin cargo. ¿Me das un WhatsApp?»"
+    "cierre": "«Sin permanencia. 15 días gratis. Si no funciona, sin cargo. ¿Me das un WhatsApp?»"
   }
 }

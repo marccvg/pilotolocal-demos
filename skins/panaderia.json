@@ -89,48 +89,63 @@
     "cat_label": "🎄 Temporada"
   },
   "guion": {
-    "entrada": "«Hola, soy Marc. Trabajo con panaderías artesanas para automatizar los encargos de WhatsApp. ¿Recibís muchos encargos de tartas, roscones o pan especial por WA?»",
+    "entrada": "«Hola, soy Marc. Estoy hablando con comercios locales como el vuestro para entender cómo gestionáis los contactos con clientes por internet y si hay cosas que os generan problemas en el día a día. ¿Tenéis dos minutos?»",
     "preguntas": [
       {
-        "q": "¿Cuántos encargos por WA recibís a la semana?",
-        "si": "💚 Dolor confirmado — sigue",
-        "no": "¿Y por teléfono? ¿Los anotáis en papel o en el móvil?"
+        "q": "¿Recibís muchos encargos de tartas, roscones, hogazas o cosas que haya que preparar con antelación? ¿Por qué canal os suelen llegar?",
+        "si": "💚 Sí + WA → fit perfecto",
+        "no": "No encargos → menos dolor; preguntar si venta solo mostrador"
       },
       {
-        "q": "¿Quién responde los mensajes — solo el dueño / dueña?",
-        "si": "💚 Cuello de botella claro",
-        "no": "¿Y cuando esa persona está metiendo bandejas o de vacaciones?"
+        "q": "¿Cómo se comunican con vosotros los clientes cuando no están en la tienda? (WhatsApp, teléfono, Instagram DM, email, nada...)",
+        "si": "💚 Usan WA/IG → canal activo, hay dolor",
+        "no": "Solo presencial → menor fit, pero preguntar por qué (puede ser decisión o imposibilidad)"
       },
       {
-        "q": "¿Os ha pasado ver un encargo que llegó de madrugada y ya era tarde para confirmarlo?",
-        "si": "🎯 BINGO — muestra la demo ahora",
-        "no": "¿En Navidad o temporada de comuniones os saturáis de mensajes?"
+        "q": "¿Quién gestiona esos mensajes? ¿Es siempre la misma persona o se reparte?",
+        "si": "💚 1 sola persona = cuello de botella claro",
+        "no": "Si se reparte → preguntar si pierden mensajes o se duplican respuestas"
       },
       {
-        "q": "¿Tenéis web propia, o solo Instagram / WhatsApp?",
-        "si": "Tienen web — algo digitalizado ya",
-        "no": "💚 Todo manual — dolor digital extra"
+        "q": "¿Cómo tenéis el catálogo? ¿Lo veis los clientes de alguna forma antes de venir? (web, Instagram, catálogo PDF, nada...)",
+        "si": "💚 Catálogo digital activo → podemos integrarlo en el bot",
+        "no": "No tienen → oportunidad: el bot puede ser el primer catálogo digital"
+      },
+      {
+        "q": "¿Os ha pasado que un encargo llega a una hora en la que no podéis atenderlo (madrugada, mientras amasáis, día de descanso) y luego habéis tenido que explicaros o perdisteis el pedido?",
+        "si": "💚 Dolor concreto confirmado",
+        "no": "¿Y encargos que llegan sin horario de recogida claro?"
+      },
+      {
+        "q": "¿Recibís reseñas en Google? ¿Hacéis algo para pedírselas a los clientes o depende de que ellos las dejen solos?",
+        "si": "💚 Nada activo → el bot puede pedir reseña al final del encargo (killer feature)",
+        "no": "Ya tienen mecanismo → preguntar cuál y si funciona"
+      },
+      {
+        "q": "¿Hay algún problema que os encontréis muchos días a la semana y que os quite tiempo o os genere estrés? (lo que sea)",
+        "si": "🎯 Dolor espontáneo revelado — toma nota literal",
+        "no": "No sale nada → preguntar por específico del vertical (siguiente)"
       }
     ],
-    "demo_trigger": "«¿Te enseño en 1 minuto cómo un bot gestiona un encargo de tarta solo?»",
+    "demo_trigger": "«¿Te enseño en 1 minuto cómo quedaría un bot gestionando los encargos y pidiendo reseña al final?»",
     "objeciones": [
       {
         "o": "«Nosotros respondemos todo»",
-        "r": "«¿Y a las 2am cuando llega el encargo de la tarta de boda?»"
+        "r": "«¿Y los días que estáis con las manos en masa a las 7am? ¿Quién responde?»"
       },
       {
         "o": "«Somos pocos, lo manejamos»",
-        "r": "«¿Y en Navidad con 40 roscones pedidos? ¿Cuántos mensajes al día?»"
+        "r": "«¿Y en Navidad con 40 roscones? ¿Cuántos WAs al día?»"
       },
       {
         "o": "«¿Cuánto cuesta?»",
-        "r": "«15 días gratis. Solo pagas si lo usas y te convence.»"
+        "r": "«15 días gratis. Solo pagas si lo usas y os sirve.»"
       },
       {
         "o": "«No somos de tecnología»",
         "r": "«Lo configuro yo con vuestro catálogo. Vosotros solo veis los pedidos llegar ordenados.»"
       }
     ],
-    "cierre": "«15 días gratis, yo lo configuro con vuestro catálogo en 1 hora. ¿Me das un número para llamarte esta semana?»"
+    "cierre": "«15 días gratis, yo lo configuro con vuestros productos. ¿Me das un número para hablarte esta semana?»"
   }
 }
