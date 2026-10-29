@@ -54,6 +54,8 @@ let currentChat = 'admin';
 let chatHistory = { patient: [], admin: [] };
 let autoPlay = false;
 let autoTimer = null;
+let autoSpeedMult = 1;
+const AUTO_BASE_MS = 2200;
 let dualMode = false;
 
 // ─────────────────────────────────────────────────────────────
@@ -1172,13 +1174,28 @@ function toggleAuto() {
   autoPlay = !autoPlay;
   el.btnAuto.textContent = autoPlay ? '⏸️ Pausar' : '▶️ Auto';
   if (autoPlay) {
-    autoTimer = setInterval(() => {
-      if (currentStep >= STEPS.length) { toggleAuto(); return; }
-      next();
-    }, 2200);
+    startAutoTimer();
   } else {
     clearInterval(autoTimer);
   }
+}
+
+function startAutoTimer() {
+  if (autoTimer) clearInterval(autoTimer);
+  autoTimer = setInterval(() => {
+    if (currentStep >= STEPS.length) { toggleAuto(); return; }
+    next();
+  }, AUTO_BASE_MS / autoSpeedMult);
+}
+
+function toggleSpeed() {
+  autoSpeedMult = autoSpeedMult === 1 ? 2 : 1;
+  const btn = document.getElementById('btn-speed');
+  if (btn) {
+    btn.textContent = autoSpeedMult === 2 ? '🐢 x1' : '⚡ x2';
+    btn.classList.toggle('active', autoSpeedMult === 2);
+  }
+  if (autoPlay) startAutoTimer();
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1222,6 +1239,8 @@ async function init() {
   el.btnNext.onclick = next;
   el.btnPrev.onclick = prev;
   el.btnAuto.onclick = toggleAuto;
+  const btnSpeed = document.getElementById('btn-speed');
+  if (btnSpeed) btnSpeed.onclick = toggleSpeed;
   el.btnReset.onclick = () => reset(true);
   if (el.btnDual) el.btnDual.onclick = toggleDual;
 
@@ -1242,6 +1261,7 @@ async function init() {
     else if (e.key === 'h' || e.key === 'H') document.body.classList.toggle('hide-controls');
     else if (e.key === 'b' || e.key === 'B') document.body.classList.toggle('nobezel');
     else if (e.key === 'd' || e.key === 'D') toggleDual();
+    else if (e.key === 'x' || e.key === 'X') toggleSpeed();
   });
 
   if (params.get('clean') === '1') document.body.classList.add('clean');
