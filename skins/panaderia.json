@@ -74,6 +74,78 @@
       "nombre": "Caja surtida bollería (12 u.)",
       "precio": "14€",
       "variantes": "surtido clásico o sin gluten"
+    },
+    {
+      "id": "p6",
+      "cat": "tartas",
+      "img": "🧀",
+      "nombre": "Tarta de queso casera",
+      "precio": "22€",
+      "variantes": "con mermelada frutos rojos opcional"
+    },
+    {
+      "id": "p7",
+      "cat": "tartas",
+      "img": "🥕",
+      "nombre": "Tarta de zanahoria con nueces",
+      "precio": "24€",
+      "variantes": "cobertura queso crema · porción grande"
+    },
+    {
+      "id": "p8",
+      "cat": "pan",
+      "img": "🥖",
+      "nombre": "Pan integral de centeno",
+      "precio": "3,80€",
+      "variantes": "500g · con pipas o sin"
+    },
+    {
+      "id": "p9",
+      "cat": "pan",
+      "img": "🌾",
+      "nombre": "Pan de espelta",
+      "precio": "4,20€",
+      "variantes": "fermentación 24h"
+    },
+    {
+      "id": "p10",
+      "cat": "bolleria",
+      "img": "🥐",
+      "nombre": "Cruasán mantequilla francesa",
+      "precio": "1,80€/u",
+      "variantes": "clásico o con chocolate"
+    },
+    {
+      "id": "p11",
+      "cat": "bolleria",
+      "img": "🥮",
+      "nombre": "Napolitana de crema",
+      "precio": "1,60€/u",
+      "variantes": "crema o chocolate"
+    },
+    {
+      "id": "p12",
+      "cat": "dulces",
+      "img": "🍪",
+      "nombre": "Pastas de té surtidas (250g)",
+      "precio": "9€",
+      "variantes": "mezcla de 8 variedades"
+    },
+    {
+      "id": "p13",
+      "cat": "dulces",
+      "img": "🧁",
+      "nombre": "Cupcakes decorados (6 u.)",
+      "precio": "15€",
+      "variantes": "sabores a elegir"
+    },
+    {
+      "id": "p14",
+      "cat": "temporada",
+      "img": "🎃",
+      "nombre": "Panellets de Todos los Santos",
+      "precio": "22€/kg",
+      "variantes": "piñones, almendra, coco, chocolate"
     }
   ],
   "pregunta_variante_text": "¿Qué sabor y decoración te gustaría?",

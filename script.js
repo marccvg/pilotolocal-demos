@@ -160,6 +160,34 @@ function buildSteps(skin) {
       dir: 'out', text: cats[2] ? cats[2].label : cats[0].label, time: '17:30', read: true
     }},
     { chat: 'patient', action: 'typing' },
+    (function(){
+      // Productos de la categoría elegida (tartas por defecto)
+      const catKey = cats[2] ? cats[2].key : cats[0].key;
+      const prodsCat = p.filter(x => x.cat === catKey);
+      const label = cats[2] ? cats[2].label : cats[0].label;
+      const listado = prodsCat.map(x => `${x.img} <strong>${x.nombre}</strong> · ${x.precio}`).join('<br>');
+      return { chat: 'patient', action: 'msg', payload: {
+        dir: 'in',
+        text: `<strong>${label}</strong><br><br>${listado}<br><br>Toca el que quieras encargar:`,
+        time: '17:31'
+      }};
+    })(),
+    (function(){
+      const catKey = cats[2] ? cats[2].key : cats[0].key;
+      const prodsCat = p.filter(x => x.cat === catKey);
+      return { chat: 'patient', action: 'list-message', payload: {
+        btnText: 'Elegir producto',
+        sheetTitle: 'Productos',
+        sections: [{
+          header: 'Toca para encargar',
+          items: prodsCat.map(x => ({ text: `${x.img} ${x.nombre}`, sub: x.precio }))
+        }]
+      }};
+    })(),
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: `${prodA.img} ${prodA.nombre}`, time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
       text: `${prodA.img} <strong>${prodA.nombre}</strong><br>${prodA.precio}<br><em>${prodA.variantes}</em>`,
@@ -167,7 +195,7 @@ function buildSteps(skin) {
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
       { text: '✅ La quiero' },
-      { text: '➡️ Siguiente' },
+      { text: '⬅ Volver a la lista' },
       { text: '⬅ Menú' },
     ]},
 
