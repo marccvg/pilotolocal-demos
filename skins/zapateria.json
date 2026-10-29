@@ -1,0 +1,132 @@
+{
+  "slug": "zapateria",
+  "negocio_name": "Zapatería Pau",
+  "negocio_emoji": "👟",
+  "admin_name": "Panel zapatería — tu asistente",
+  "owner_name": "Pau",
+  "cliente_name": "Javier Ortega",
+  "tono": "experto-asesor",
+  "greeting_tag": "Calzado con criterio desde 1985",
+  "categorias": [
+    {
+      "key": "mujer",
+      "label": "👠 Mujer",
+      "sub": "casual, vestir, botas"
+    },
+    {
+      "key": "hombre",
+      "label": "👞 Hombre",
+      "sub": "casual, vestir, deportivo"
+    },
+    {
+      "key": "nino",
+      "label": "👟 Niño",
+      "sub": "colegio, deporte, invierno"
+    },
+    {
+      "key": "deportivo",
+      "label": "🏃 Deportivo",
+      "sub": "running, trail, pádel"
+    },
+    {
+      "key": "ofertas",
+      "label": "🏷️ Ofertas",
+      "sub": "últimas tallas rebajadas"
+    }
+  ],
+  "productos_sample": [
+    {
+      "id": "p1",
+      "cat": "deportivo",
+      "img": "👟",
+      "nombre": "Zapatilla running Asics Gel",
+      "precio": "95€",
+      "variantes": "40 a 46 · gris o azul"
+    },
+    {
+      "id": "p2",
+      "cat": "hombre",
+      "img": "👞",
+      "nombre": "Zapato vestir piel burdeos",
+      "precio": "110€",
+      "variantes": "40 a 45"
+    },
+    {
+      "id": "p3",
+      "cat": "mujer",
+      "img": "👠",
+      "nombre": "Bota alta piel negra",
+      "precio": "135€",
+      "variantes": "36 a 41"
+    },
+    {
+      "id": "p4",
+      "cat": "nino",
+      "img": "👟",
+      "nombre": "Zapatilla colegio velcro",
+      "precio": "42€",
+      "variantes": "25 a 34"
+    },
+    {
+      "id": "p5",
+      "cat": "ofertas",
+      "img": "🏷️",
+      "nombre": "Náuticos piel marino (outlet)",
+      "precio": "49€",
+      "variantes": "últimas tallas 42 y 43"
+    }
+  ],
+  "pregunta_variante_text": "¿Qué número y color?",
+  "pregunta_fecha_text": "¿Para cuándo lo necesitas?",
+  "cta_resena_text": "Si te asesoramos bien con el calzado y estás a gusto, ¿nos dejas una reseña en Google? Es la mejor forma de que llegue gente que valore el oficio.",
+  "novedad_sample": {
+    "titulo": "Nueva colección otoño/invierno 👢",
+    "cuerpo": "Han entrado las botas de piel y las zapatillas de montaña para esta temporada. Pásate a probarlas o reserva tu talla por aquí."
+  },
+  "producto_add_sample": {
+    "nombre": "Bota piel castellana marrón",
+    "precio": "145€",
+    "cat_label": "👞 Hombre"
+  },
+  "guion": {
+    "entrada": "«Hola, trabajo con zapaterías independientes. ¿Os preguntan mucho por WhatsApp si tenéis una talla o modelo concreto?»",
+    "preguntas": [
+      {
+        "q": "¿Cuántas consultas de talla o modelo recibís por WA al día?",
+        "si": "💚 Dolor confirmado — sigue",
+        "no": "¿Y en temporada (vuelta al cole, Navidad)? ¿Aumenta mucho?"
+      },
+      {
+        "q": "¿Qué pasa cuando no podéis responder al momento?",
+        "si": "💚 El cliente se va — venta perdida confirmada",
+        "no": "¿Siempre hay alguien disponible para responder WA?"
+      },
+      {
+        "q": "¿Alguna vez viene alguien y la talla que os pidió ya no está?",
+        "si": "🎯 BINGO — muestra la demo ahora",
+        "no": "¿Avisáis cuando os llega una talla que alguien pidió?"
+      },
+      {
+        "q": "¿Tenéis web con el catálogo y stock, o todo va por WA?",
+        "si": "Tienen web — algo digitalizado",
+        "no": "💚 Todo manual — clarísimo dolor digital"
+      }
+    ],
+    "demo_trigger": "«¿Vemos cómo el bot reserva una talla y avisa al cliente cuando llega, en 1 minuto?»",
+    "objeciones": [
+      {
+        "o": "«Nosotros lo miramos enseguida»",
+        "r": "«¿Y cuando hay clientas en tienda y llega un WA de talla?»"
+      },
+      {
+        "o": "«Es mucho lío configurarlo»",
+        "r": "«Lo configuro yo con vuestro catálogo. Una hora de mi tiempo, cero de vuestra energía.»"
+      },
+      {
+        "o": "«No vendemos por internet»",
+        "r": "«No es venta online — es solo responder el WA que ya te envían.»"
+      }
+    ],
+    "cierre": "«15 días gratis. ¿Me das un número para enviarte el acceso esta semana?»"
+  }
+}

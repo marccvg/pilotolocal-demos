@@ -1,0 +1,120 @@
+{
+  "_comment": "Mock data compartida entre skins — 23 pedidos + 3 reseñas + 2 broadcasts. No conecta a backend real.",
+  "semana": "2026-10-28/2026-11-03",
+
+  "pedidos": [
+    { "id": "P001", "cliente": "Laura García",   "producto": "Ramo primaveral",        "precio": 35,  "estado": "entregado",   "fecha": "2026-10-28", "resena_push": "enviado"  },
+    { "id": "P002", "cliente": "Carlos M.",       "producto": "Ramo de rosas rojas",    "precio": 28,  "estado": "entregado",   "fecha": "2026-10-28", "resena_push": "enviado"  },
+    { "id": "P003", "cliente": "Ana P.",          "producto": "Centro mesa comedor",    "precio": 45,  "estado": "entregado",   "fecha": "2026-10-28", "resena_push": "pendiente"},
+    { "id": "P004", "cliente": "Marta L.",        "producto": "Monstera deliciosa",     "precio": 18,  "estado": "entregado",   "fecha": "2026-10-29", "resena_push": null       },
+    { "id": "P005", "cliente": "Jordi R.",        "producto": "Ramo primaveral",        "precio": 35,  "estado": "preparando",  "fecha": "2026-10-29", "resena_push": null       },
+    { "id": "P006", "cliente": "Sonia T.",        "producto": "Ramo silvestre",         "precio": 22,  "estado": "entregado",   "fecha": "2026-10-29", "resena_push": "enviado"  },
+    { "id": "P007", "cliente": "Pedro V.",        "producto": "Ramo de rosas rojas",    "precio": 28,  "estado": "entregado",   "fecha": "2026-10-29", "resena_push": null       },
+    { "id": "P008", "cliente": "Elena K.",        "producto": "Centro mesa comedor",    "precio": 45,  "estado": "en_camino",   "fecha": "2026-10-30", "resena_push": null       },
+    { "id": "P009", "cliente": "Raúl S.",         "producto": "Ramo primaveral",        "precio": 35,  "estado": "entregado",   "fecha": "2026-10-30", "resena_push": "enviado"  },
+    { "id": "P010", "cliente": "Nuria A.",        "producto": "Monstera deliciosa",     "precio": 18,  "estado": "entregado",   "fecha": "2026-10-30", "resena_push": null       },
+    { "id": "P011", "cliente": "David H.",        "producto": "Ramo silvestre",         "precio": 22,  "estado": "entregado",   "fecha": "2026-10-30", "resena_push": null       },
+    { "id": "P012", "cliente": "Isabel F.",       "producto": "Ramo de rosas rojas",    "precio": 28,  "estado": "pendiente",   "fecha": "2026-10-31", "resena_push": null       },
+    { "id": "P013", "cliente": "Tomás C.",        "producto": "Centro mesa comedor",    "precio": 45,  "estado": "confirmado",  "fecha": "2026-10-31", "resena_push": null       },
+    { "id": "P014", "cliente": "Lucía B.",        "producto": "Ramo primaveral",        "precio": 35,  "estado": "entregado",   "fecha": "2026-10-31", "resena_push": null       },
+    { "id": "P015", "cliente": "Marcos W.",       "producto": "Monstera deliciosa",     "precio": 18,  "estado": "entregado",   "fecha": "2026-10-31", "resena_push": null       },
+    { "id": "P016", "cliente": "Cristina N.",     "producto": "Ramo primaveral",        "precio": 35,  "estado": "entregado",   "fecha": "2026-10-31", "resena_push": "enviado"  },
+    { "id": "P017", "cliente": "Andrés D.",       "producto": "Ramo de rosas rojas",    "precio": 28,  "estado": "entregado",   "fecha": "2026-11-01", "resena_push": null       },
+    { "id": "P018", "cliente": "Rosa M.",         "producto": "Centro mesa comedor",    "precio": 45,  "estado": "entregado",   "fecha": "2026-11-01", "resena_push": null       },
+    { "id": "P019", "cliente": "Felipe E.",       "producto": "Ramo silvestre",         "precio": 22,  "estado": "entregado",   "fecha": "2026-11-01", "resena_push": null       },
+    { "id": "P020", "cliente": "Victoria J.",     "producto": "Ramo primaveral",        "precio": 35,  "estado": "entregado",   "fecha": "2026-11-01", "resena_push": null       },
+    { "id": "P021", "cliente": "Álvaro O.",       "producto": "Ramo de rosas rojas",    "precio": 28,  "estado": "en_camino",   "fecha": "2026-11-01", "resena_push": null       },
+    { "id": "P022", "cliente": "Patricia I.",     "producto": "Monstera deliciosa",     "precio": 18,  "estado": "preparando",  "fecha": "2026-11-02", "resena_push": null       },
+    { "id": "P023", "cliente": "Sergio G.",       "producto": "Ramo primaveral",        "precio": 35,  "estado": "confirmado",  "fecha": "2026-11-02", "resena_push": null       }
+  ],
+
+  "metricas_semana": {
+    "total_pedidos": 23,
+    "variacion_vs_anterior_pct": 15,
+    "ventas_estimadas_eur": 1247,
+    "ticket_medio_eur": 54,
+    "pedidos_por_dia": {
+      "lun": 2, "mar": 4, "mie": 3, "jue": 4, "vie": 7, "sab": 2, "dom": 1
+    }
+  },
+
+  "metricas_mes": {
+    "semanas": [
+      { "label": "Sem 1 (1–5)",   "pedidos": 18, "ventas": 852  },
+      { "label": "Sem 2 (6–12)",  "pedidos": 21, "ventas": 1103 },
+      { "label": "Sem 3 (13–19)", "pedidos": 19, "ventas": 978  },
+      { "label": "Sem 4 (20–26)", "pedidos": 23, "ventas": 1247 }
+    ],
+    "total_pedidos": 81,
+    "total_ventas_eur": 4180,
+    "mejor_dia_semana": "viernes",
+    "media_viernes": 7
+  },
+
+  "resenas": [
+    {
+      "id": "R001",
+      "autor": "Laura G.",
+      "estrellas": 5,
+      "texto": "El ramo llegó perfecto, exactamente lo que pedí. Muy recomendable.",
+      "fecha": "2026-10-29",
+      "pedido_ref": "P001",
+      "via_push": true
+    },
+    {
+      "id": "R002",
+      "autor": "Carlos M.",
+      "estrellas": 5,
+      "texto": "Marina es un encanto. Las peonías eran preciosas, repetiremos.",
+      "fecha": "2026-10-30",
+      "pedido_ref": "P002",
+      "via_push": true
+    },
+    {
+      "id": "R003",
+      "autor": "Ana P.",
+      "estrellas": 4,
+      "texto": "Muy buen servicio, rápido y con mucho detalle.",
+      "fecha": "2026-10-31",
+      "pedido_ref": "P003",
+      "via_push": false
+    }
+  ],
+
+  "broadcasts": [
+    {
+      "id": "B001",
+      "titulo": "Llegada de peonías",
+      "cuerpo": "Esta semana tenemos peonías rosas y blancas recién traídas. Último mes de temporada — ¡no te quedes sin las tuyas!",
+      "enviado_a": 47,
+      "abierto_por": 37,
+      "open_rate_pct": 78,
+      "fecha": "2026-10-28",
+      "hora": "09:30"
+    },
+    {
+      "id": "B002",
+      "titulo": "Oferta fin de temporada",
+      "cuerpo": "Últimas unidades de centros de otoño al 15% de descuento. Solo hasta el domingo.",
+      "enviado_a": 47,
+      "abierto_por": 41,
+      "open_rate_pct": 87,
+      "fecha": "2026-10-30",
+      "hora": "17:00"
+    }
+  ],
+
+  "reservas_senal": [
+    {
+      "id": "RS001",
+      "cliente": "Laura García",
+      "descripcion": "Decoración floral boda: arco + 8 centros de mesa",
+      "presupuesto_estimado": 85,
+      "senal_pct": 15,
+      "senal_eur": 13,
+      "metodo_pago": "Bizum",
+      "estado": "confirmada",
+      "fecha": "2026-10-29"
+    }
+  ]
+}

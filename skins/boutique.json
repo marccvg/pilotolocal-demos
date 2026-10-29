@@ -1,0 +1,132 @@
+{
+  "slug": "boutique",
+  "negocio_name": "Boutique Nerea",
+  "negocio_emoji": "👗",
+  "admin_name": "Panel boutique — tu asistente",
+  "owner_name": "Nerea",
+  "cliente_name": "Carla Molina",
+  "tono": "trendy-joven",
+  "greeting_tag": "Moda que te hace sentir tú misma",
+  "categorias": [
+    {
+      "key": "tops",
+      "label": "👚 Tops",
+      "sub": "camisas, blusas, tops"
+    },
+    {
+      "key": "pantalones",
+      "label": "👖 Pantalones",
+      "sub": "jeans, baggy, culottes"
+    },
+    {
+      "key": "vestidos",
+      "label": "👗 Vestidos",
+      "sub": "midi, mini, largos"
+    },
+    {
+      "key": "accesorios",
+      "label": "👜 Accesorios",
+      "sub": "bolsos, cinturones, joyas"
+    },
+    {
+      "key": "nuevo",
+      "label": "✨ Nuevo",
+      "sub": "recién llegado esta semana"
+    }
+  ],
+  "productos_sample": [
+    {
+      "id": "p1",
+      "cat": "vestidos",
+      "img": "👗",
+      "nombre": "Vestido midi floral",
+      "precio": "49€",
+      "variantes": "XS, S, M, L"
+    },
+    {
+      "id": "p2",
+      "cat": "tops",
+      "img": "👚",
+      "nombre": "Blusa satén champán",
+      "precio": "35€",
+      "variantes": "S, M, L · beige o negro"
+    },
+    {
+      "id": "p3",
+      "cat": "pantalones",
+      "img": "👖",
+      "nombre": "Jean mom-fit tiro alto",
+      "precio": "42€",
+      "variantes": "36 a 44 · azul claro/oscuro"
+    },
+    {
+      "id": "p4",
+      "cat": "accesorios",
+      "img": "👜",
+      "nombre": "Bolso bandolera piel",
+      "precio": "55€",
+      "variantes": "camel, negro, cuero"
+    },
+    {
+      "id": "p5",
+      "cat": "nuevo",
+      "img": "🧥",
+      "nombre": "Trench corto beige",
+      "precio": "75€",
+      "variantes": "S, M, L"
+    }
+  ],
+  "pregunta_variante_text": "¿Qué talla y color te interesa?",
+  "pregunta_fecha_text": "¿Para cuándo lo necesitas?",
+  "cta_resena_text": "Si Nerea te asesoró bien y te llevaste algo que te encanta, ¿nos ayudas con una reseña en Google? Significa mucho para boutiques pequeñas como la nuestra.",
+  "novedad_sample": {
+    "titulo": "Colección otoño ya en tienda ✨",
+    "cuerpo": "Acabamos de reponer trench, botas y jerséis oversize. Esta semana -15% en toda la colección anterior."
+  },
+  "producto_add_sample": {
+    "nombre": "Jersey oversize lana",
+    "precio": "55€",
+    "cat_label": "✨ Nuevo"
+  },
+  "guion": {
+    "entrada": "«Hola, trabajo con boutiques independientes. ¿Os preguntan mucho por WhatsApp si tenéis algo en una talla o color concreto?»",
+    "preguntas": [
+      {
+        "q": "¿Cuántas preguntas de stock recibís por WA al día? ('¿tenéis la M en azul?')",
+        "si": "💚 Dolor confirmado — sigue",
+        "no": "¿Y en rebajas o nueva colección? ¿Se disparan los mensajes?"
+      },
+      {
+        "q": "¿Os ha pasado que cuando respondéis ya habéis vendido esa prenda?",
+        "si": "💚 Venta perdida confirmada",
+        "no": "¿Siempre hay alguien disponible para responder al momento?"
+      },
+      {
+        "q": "¿Avisáis a clientas cuando llega nueva colección o algo que pedían?",
+        "si": "💚 Lo hacéis manual — mucho trabajo",
+        "no": "¿Las clientas os lo piden y no podéis siempre avisarles?"
+      },
+      {
+        "q": "¿Tenéis Instagram activo con las prendas?",
+        "si": "💚 Leads desde IG vía DM también",
+        "no": "¿Cómo os encuentran las clientas nuevas?"
+      }
+    ],
+    "demo_trigger": "«¿Vemos cómo el bot responde '¿tenéis la M en azul?' automáticamente, en 1 minuto?»",
+    "objeciones": [
+      {
+        "o": "«Nosotras lo miramos enseguida»",
+        "r": "«¿Y los domingos? ¿Y cuando hay varias clientas en tienda a la vez?»"
+      },
+      {
+        "o": "«Vendemos por relación personal»",
+        "r": "«El bot solo responde lo rápido y urgente. Tú mantienes la relación.»"
+      },
+      {
+        "o": "«No queremos parecer una tienda online»",
+        "r": "«No es tienda online — es solo no perder la clienta que pregunta y no recibe respuesta.»"
+      }
+    ],
+    "cierre": "«15 días sin cargo. Lo configuro yo con vuestro catálogo. ¿Me das un número para hablar esta semana?»"
+  }
+}

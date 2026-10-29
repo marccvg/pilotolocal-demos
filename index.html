@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1.0, maximum-scale=1.0">
+<title>PilotoLocal · WhatsApp Demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="stage">
+  <!-- iPhone frame (opcional, se oculta con ?nobezel=1) -->
+  <div class="phone" id="phone">
+    <!-- Notch -->
+    <div class="notch"></div>
+
+    <!-- Status bar -->
+    <div class="statusbar">
+      <span class="time">11:42</span>
+      <span class="icons">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><path d="M0 10h2v2H0zm4-2h2v4H4zm4-2h2v6H8zm4-2h2v8h-2zm4-2h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 1C4.9 1 2.1 2.3 0 4.4l1.4 1.4C3.2 4.1 5.5 3 8 3s4.8 1.1 6.6 2.8L16 4.4C13.9 2.3 11.1 1 8 1zm0 4C6 5 4.2 5.8 2.8 7.1l1.4 1.4C5.3 7.6 6.6 7 8 7s2.7.6 3.8 1.5l1.4-1.4C11.8 5.8 10 5 8 5zm0 4c-1 0-1.9.4-2.6 1.1L8 12.6l2.6-2.5C9.9 9.4 9 9 8 9z"/></svg>
+        <svg width="24" height="12" viewBox="0 0 24 12" fill="currentColor"><rect x="1" y="2" width="20" height="8" rx="1.5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="2.5" y="3.5" width="17" height="5" rx="0.5"/><rect x="21.5" y="4.5" width="1.5" height="3" rx="0.5"/></svg>
+      </span>
+    </div>
+
+    <!-- Chat header -->
+    <div class="chat-header" id="chat-header">
+      <span class="back-icon">
+        <svg width="12" height="20" viewBox="0 0 12 20" fill="currentColor"><path d="M11 1L2 10l9 9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="avatar" id="chat-avatar">🌸</div>
+      <div class="contact">
+        <div class="name" id="chat-name">Floristería Marina</div>
+        <div class="status" id="chat-status">en línea</div>
+      </div>
+      <div class="header-actions">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 3H5.5a2.5 2.5 0 00-2.5 2.5v13a2.5 2.5 0 002.5 2.5h13a2.5 2.5 0 002.5-2.5v-10L15.5 3zm-.5 2L19 9h-4V5z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+      </div>
+    </div>
+
+    <!-- Chat area con fondo doodle -->
+    <div class="chat" id="chat">
+      <!-- mensajes se insertan aquí vía JS -->
+    </div>
+
+    <!-- Input bar (decorativa, no funcional) -->
+    <div class="inputbar">
+      <div class="input-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#8696a0"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="placeholder">Mensaje</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#8696a0"><path d="M20.5 11.5l-9 9a5 5 0 01-7-7l9-9a3 3 0 014 4l-9 9a1 1 0 01-1.5-1.5l8-8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#8696a0"><path d="M12 2a4 4 0 00-4 4v6a4 4 0 008 0V6a4 4 0 00-4-4zm7 10a7 7 0 01-14 0M12 19v3M8 22h8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <button class="send-btn" id="send-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2a4 4 0 00-4 4v6a4 4 0 008 0V6a4 4 0 00-4-4zm7 10a7 7 0 01-14 0M12 19v3M8 22h8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Home indicator iOS -->
+    <div class="home-indicator"></div>
+
+    <!-- List Message modal (bottom sheet) -->
+    <div class="sheet-backdrop" id="sheet-backdrop"></div>
+    <div class="sheet" id="sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title" id="sheet-title">Elige una opción</div>
+      <div class="sheet-content" id="sheet-content"></div>
+      <div class="sheet-cancel" id="sheet-cancel">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- SEGUNDO móvil (dual view admin) -->
+  <div class="phone phone-dual" id="phone-dual" style="display:none">
+    <div class="notch"></div>
+    <div class="statusbar">
+      <span class="time">11:42</span>
+      <span class="icons">📶 📶 🔋</span>
+    </div>
+    <div class="chat-header" id="chat-header-dual">
+      <span class="back-icon">◀</span>
+      <div class="avatar admin" id="chat-avatar-dual">🌸</div>
+      <div class="contact">
+        <div class="name" id="chat-name-dual">Panel comercio — tu asistente</div>
+        <div class="status" id="chat-status-dual">siempre activo · bot verificado ✓</div>
+      </div>
+      <div class="header-actions"></div>
+    </div>
+    <div class="chat" id="chat-dual"></div>
+    <div class="inputbar">
+      <div class="input-pill">
+        <span class="placeholder">Mensaje</span>
+      </div>
+      <button class="send-btn">↑</button>
+    </div>
+    <div class="home-indicator"></div>
+
+    <div class="sheet-backdrop" id="sheet-backdrop-dual"></div>
+    <div class="sheet" id="sheet-dual">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title" id="sheet-title-dual">Elige una opción</div>
+      <div class="sheet-content" id="sheet-content-dual"></div>
+      <div class="sheet-cancel" id="sheet-cancel-dual">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Controles de presentación -->
+  <div class="controls" id="controls">
+    <div class="progress">Paso <span id="step-current">0</span> / <span id="step-total">0</span></div>
+    <div class="buttons">
+      <button id="btn-prev" class="ctrl-btn">← Anterior</button>
+      <button id="btn-next" class="ctrl-btn primary">Siguiente paso →</button>
+      <button id="btn-auto" class="ctrl-btn">▶️ Auto</button>
+      <button id="btn-guion" class="ctrl-btn guion-btn">📋 Guión</button>
+      <button id="btn-dual" class="ctrl-btn">👥 Dual view</button>
+      <button id="btn-reset" class="ctrl-btn">⟲ Reiniciar</button>
+    </div>
+    <div class="hint">
+      Skin actual: <strong id="skin-label">floristeria</strong> · prueba <code>?skin=boutique|papeleria|zapateria</code><br>
+      Atajos: <kbd>→</kbd> siguiente · <kbd>Space</kbd> auto · <kbd>D</kbd> dual · <kbd>R</kbd> reset · <kbd>F</kbd> fullscreen · <kbd>H</kbd> ocultar controles · <kbd>B</kbd> quitar marco · <kbd>G</kbd> guión
+    </div>
+  </div>
+</div>
+
+<!-- Panel Guión — overlay campo -->
+<div id="guion-overlay" class="guion-overlay" style="display:none">
+  <div class="guion-panel" id="guion-panel">
+    <div class="guion-header">
+      <span class="guion-title" id="guion-title">📋 Guión</span>
+      <button class="guion-close" id="guion-close">✕</button>
+    </div>
+    <div class="guion-body" id="guion-body">
+      <!-- se rellena dinámicamente -->
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+{
+  "slug": "floristeria",
+  "negocio_name": "Floristería Marina",
+  "negocio_emoji": "🌸",
+  "admin_name": "Panel floristería — tu asistente",
+  "owner_name": "Marina",
+  "cliente_name": "Laura García",
+  "tono": "cercano-maternal",
+  "greeting_tag": "La floristería del barrio desde 1998",
+  "categorias": [
+    {
+      "key": "ramos",
+      "label": "💐 Ramos",
+      "sub": "clásicos, modernos, campestres"
+    },
+    {
+      "key": "centros",
+      "label": "🏵️ Centros",
+      "sub": "mesa, decorativos"
+    },
+    {
+      "key": "bodas",
+      "label": "💒 Bodas",
+      "sub": "ramo novia, iglesia, mesas"
+    },
+    {
+      "key": "plantas",
+      "label": "🪴 Plantas",
+      "sub": "interior y exterior"
+    },
+    {
+      "key": "eventos",
+      "label": "🎉 Eventos",
+      "sub": "cumpleaños, aniversario, condolencia"
+    }
+  ],
+  "productos_sample": [
+    {
+      "id": "p1",
+      "cat": "ramos",
+      "img": "💐",
+      "nombre": "Ramo primaveral",
+      "precio": "35€",
+      "variantes": "pequeño/mediano/grande"
+    },
+    {
+      "id": "p2",
+      "cat": "ramos",
+      "img": "🌹",
+      "nombre": "Ramo de rosas rojas",
+      "precio": "28€",
+      "variantes": "6, 12 o 24 rosas"
+    },
+    {
+      "id": "p3",
+      "cat": "ramos",
+      "img": "🌼",
+      "nombre": "Ramo silvestre",
+      "precio": "22€",
+      "variantes": "tamaño único"
+    },
+    {
+      "id": "p4",
+      "cat": "centros",
+      "img": "🏵️",
+      "nombre": "Centro mesa comedor",
+      "precio": "45€",
+      "variantes": "colores a elegir"
+    },
+    {
+      "id": "p5",
+      "cat": "plantas",
+      "img": "🪴",
+      "nombre": "Monstera deliciosa",
+      "precio": "18€",
+      "variantes": "maceta 14 o 20 cm"
+    }
+  ],
+  "pregunta_variante_text": "¿Qué tamaño prefieres?",
+  "pregunta_fecha_text": "¿Para qué día lo necesitas?",
+  "cta_resena_text": "Si Marina te preparó un ramo que te encantó, ¿nos dejas una reseña en Google? Nos ayuda muchísimo a seguir en el barrio.",
+  "novedad_sample": {
+    "titulo": "Llegada de peonías 🌸",
+    "cuerpo": "Esta semana tenemos peonías rosas y blancas recién traídas. Último mes de temporada — ¡no te quedes sin las tuyas!"
+  },
+  "producto_add_sample": {
+    "nombre": "Ramo otoñal con dalias",
+    "precio": "32€",
+    "cat_label": "💐 Ramos"
+  },
+  "guion": {
+    "entrada": "«Hola, trabajo con floristerías para gestionar pedidos urgentes de WhatsApp. ¿Recibís muchos pedidos de ramos o encargos de boda por WA?»",
+    "preguntas": [
+      {
+        "q": "¿Cuántos pedidos urgentes de WA recibes al día? (ramos, centros, eventos)",
+        "si": "💚 Dolor confirmado — sigue",
+        "no": "¿Y en San Valentín o Día de la Madre? ¿Se multiplican?"
+      },
+      {
+        "q": "¿Puedes responder WA cuando estás haciendo un arreglo con las manos ocupadas?",
+        "si": "💚 Manos ocupadas — punto clave",
+        "no": "¿Y cuando estás en el almacén preparando pedidos del día?"
+      },
+      {
+        "q": "¿En San Valentín o Día de la Madre te satura el teléfono con mensajes?",
+        "si": "🎯 BINGO — muestra la demo ahora",
+        "no": "¿Y pedidos de boda / comunión que llegan meses antes y luego preguntan detalles?"
+      },
+      {
+        "q": "¿Tienes web o Instagram activo con tus trabajos?",
+        "si": "💚 Clientes desde IG — WA ya saturado",
+        "no": "¿Cómo te encuentran los clientes nuevos?"
+      }
+    ],
+    "demo_trigger": "«¿Vemos cómo el bot gestiona un pedido de ramo para hoy mismo, en 1 minuto?»",
+    "objeciones": [
+      {
+        "o": "«Mis clientes son de confianza, me llaman»",
+        "r": "«¿Y los nuevos que te encuentran en Instagram o Google?»"
+      },
+      {
+        "o": "«Los pedidos los gestiono yo personalmente»",
+        "r": "«¿Y cuando estás con las manos en tierra y el WA suena?»"
+      },
+      {
+        "o": "«No sé si mis clientes usarán un bot»",
+        "r": "«Ya usan WA — solo ven respuesta rápida. No saben que es un bot.»"
+      }
+    ],
+    "cierre": "«Prueba gratis 15 días. Yo lo configuro con tus productos. ¿Te mando el link al WA ahora?»"
+  }
+}

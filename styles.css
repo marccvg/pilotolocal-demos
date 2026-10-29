@@ -1,0 +1,828 @@
+/* ─────────────────────────────────────────────────────────────
+   PilotoAutomático — WhatsApp Business UI mockup pixel-perfect
+   Replica WhatsApp 2024 (dark header verde moderno #008069)
+   Dimensiones iPhone 14: 390 x 844
+───────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  background: #1a1a1a;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Modo dual: dos móviles lado a lado */
+body.dual .stage {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+body.dual .phone-dual {
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* Controles abajo en dual */
+body.dual .controls {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 700px;
+  width: auto;
+}
+
+/* Escalar móviles para que quepan dos */
+body.dual .phone {
+  transform: scale(0.72);
+  transform-origin: center center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  body.dual .phone {
+    transform: scale(0.55);
+  }
+}
+
+@media (max-width: 850px) {
+  body.dual .phone {
+    transform: scale(0.45);
+  }
+}
+
+/* ─── iPhone frame ─── */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: #000;
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;  /* contain absolutely positioned children (sheet) */
+  box-shadow:
+    0 0 0 10px #1c1c1c,
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 100px rgba(37, 211, 102, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+body.nobezel .phone {
+  border-radius: 0;
+  box-shadow: none;
+  width: 100vw;
+  height: 100vh;
+  max-width: 390px;
+  max-height: 844px;
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 32px;
+  background: #000;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+body.nobezel .notch { display: none; }
+
+/* ─── Status bar iOS ─── */
+.statusbar {
+  background: #008069;
+  color: white;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 24px 8px;
+  font-size: 15px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.statusbar .time { padding-left: 10px; }
+.statusbar .icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 15px;
+}
+
+body.nobezel .statusbar { display: none; }
+
+/* ─── Chat header ─── */
+.chat-header {
+  background: #008069;
+  color: white;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  height: 60px;
+}
+
+.back-icon { color: white; display: flex; }
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #4caf50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.avatar.admin { background: #0b7eff; }
+
+.contact {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact .name {
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact .status {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  color: white;
+}
+
+/* ─── Chat area con fondo doodle ─── */
+.chat {
+  flex: 1;
+  background: #efeae2;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d9d2c7' fill-opacity='0.35'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  scrollbar-width: none;
+}
+
+.chat::-webkit-scrollbar { display: none; }
+
+/* ─── Date divider ─── */
+.date-divider {
+  align-self: center;
+  background: #e1f3fb;
+  color: #54656f;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+}
+
+/* ─── Message bubbles ─── */
+.msg {
+  max-width: 78%;
+  padding: 6px 9px 8px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  line-height: 1.35;
+  position: relative;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  word-wrap: break-word;
+  color: #111b21;
+  animation: msgIn 0.25s ease-out;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.msg.in {
+  background: white;
+  align-self: flex-start;
+  border-top-left-radius: 0;
+}
+
+.msg.in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid white;
+  border-left: 8px solid transparent;
+}
+
+.msg.out {
+  background: #d9fdd3;
+  align-self: flex-end;
+  border-top-right-radius: 0;
+}
+
+.msg.out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #d9fdd3;
+  border-right: 8px solid transparent;
+}
+
+.msg .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  float: right;
+  margin-left: 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #667781;
+}
+
+.msg.out .meta .check {
+  color: #53bdeb;
+  display: inline-flex;
+}
+
+.msg strong { font-weight: 600; }
+.msg em { font-style: italic; color: #667781; }
+
+/* ─── Reply Buttons (Meta WhatsApp Business API) ─── */
+.reply-buttons {
+  background: white;
+  align-self: flex-start;
+  max-width: 85%;
+  margin-top: -4px;
+  border-radius: 0 0 8px 8px;
+  border-top-left-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  flex-shrink: 0;
+}
+
+.reply-buttons.linked-up { margin-top: 2px; }
+
+.reply-btn {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  border: none;
+  background: white;
+  color: #00a884;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  border-top: 1px solid #e9edef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reply-buttons .reply-btn:first-child {
+  border-top: 1px solid #e9edef;
+}
+
+.reply-btn:hover { background: #f7f8fa; }
+
+.reply-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ─── List Message button ─── */
+.list-message-btn {
+  background: white;
+  align-self: flex-start;
+  max-width: 85%;
+  margin-top: 2px;
+  border-radius: 0 0 8px 8px;
+  padding: 11px;
+  text-align: center;
+  color: #00a884;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.list-message-btn:hover { background: #f7f8fa; }
+
+/* ─── URL Button (reseña Google) ─── */
+.url-btn {
+  background: white;
+  align-self: flex-start;
+  max-width: 85%;
+  margin-top: 2px;
+  border-radius: 0 0 8px 8px;
+  padding: 11px;
+  color: #00a884;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ─── Typing indicator ─── */
+.typing {
+  background: white;
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  display: flex;
+  gap: 4px;
+  animation: msgIn 0.2s;
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: #8696a0;
+  border-radius: 50%;
+  animation: typing-dot 1.4s infinite ease-in-out;
+}
+
+.typing span:nth-child(1) { animation-delay: 0s; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ─── Input bar ─── */
+.inputbar {
+  background: #f0f2f5;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-height: 56px;
+}
+
+.input-pill {
+  flex: 1;
+  background: white;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  min-height: 40px;
+}
+
+.input-pill svg { flex-shrink: 0; }
+
+.input-pill .placeholder {
+  flex: 1;
+  color: #8696a0;
+  font-size: 15px;
+}
+
+.send-btn {
+  background: #008069;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Home indicator iOS ─── */
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  background: white;
+  border-radius: 3px;
+  z-index: 100;
+}
+
+body.nobezel .home-indicator { display: none; }
+
+/* ─── Controls (fuera del móvil) ─── */
+.controls {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+body.clean .controls { display: none; }
+body.hide-controls .controls { display: none; }
+
+.progress {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.progress span { color: white; font-weight: 600; }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.ctrl-btn:hover { background: #444; }
+
+.ctrl-btn.primary {
+  background: #008069;
+  border-color: #008069;
+}
+
+.ctrl-btn.primary:hover { background: #006b57; }
+
+.hint {
+  font-size: 11px;
+  color: #888;
+  text-align: center;
+}
+
+.hint kbd {
+  background: #333;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  color: #ccc;
+  font-size: 10px;
+}
+
+/* ─── List Message bottom sheet (DENTRO del móvil) ─── */
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: none;
+  cursor: pointer;
+  border-radius: 44px;  /* match phone border radius */
+}
+
+body.nobezel .sheet-backdrop { border-radius: 0; }
+
+.sheet-backdrop.visible { display: block; }
+
+.sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fcfaf2;
+  border-radius: 20px 20px 0 0;
+  z-index: 201;
+  max-height: 60%;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  padding-bottom: 20px;
+}
+
+.sheet.visible { transform: translateY(0); }
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: #d0d0d0;
+  border-radius: 2px;
+  margin: 10px auto;
+}
+
+.sheet-title {
+  padding: 12px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #111b21;
+  text-align: center;
+  border-bottom: 1px solid #e9edef;
+}
+
+.sheet-item {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  color: #111b21;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sheet-item:hover { background: #f5f5f5; }
+
+.sheet-item .sublabel {
+  color: #667781;
+  font-size: 13px;
+}
+
+.sheet-section-header {
+  padding: 10px 20px 6px;
+  color: #008069;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sheet-cancel {
+  padding: 14px;
+  text-align: center;
+  color: #e34747;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  border-top: 1px solid #e9edef;
+}
+
+/* ─── Responsive para pantallas grandes (grabación) ─── */
+@media (min-height: 900px) {
+  .phone {
+    transform: scale(1);
+  }
+}
+
+@media (max-height: 850px) {
+  .phone { transform: scale(0.92); }
+}
+
+@media (max-width: 500px) {
+  .phone { transform: scale(0.95); }
+}
+
+/* ─── Guión panel — overlay campo ─── */
+.guion-btn {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-color: #1a73e8 !important;
+  font-weight: 700;
+}
+.guion-btn:hover {
+  background: #1557b0 !important;
+}
+
+.guion-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.guion-panel {
+  background: #1a1a2e;
+  border: 1px solid #2d2d4e;
+  border-radius: 16px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+
+.guion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid #2d2d4e;
+  flex-shrink: 0;
+}
+
+.guion-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e8eaf0;
+  letter-spacing: -0.01em;
+}
+
+.guion-close {
+  background: #2d2d4e;
+  border: none;
+  color: #aaa;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.guion-close:hover { background: #e34747; color: #fff; }
+
+.guion-body {
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.g-section {
+  background: #242440;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.g-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7c80a8;
+  margin-bottom: 8px;
+}
+
+.g-text {
+  font-size: 0.97rem;
+  color: #d0d3e8;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Preguntas */
+.g-pregunta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #1e1e38;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+.g-pregunta:not(:last-child) { margin-bottom: 6px; }
+.g-pregunta:hover { background: #27274a; }
+.g-pregunta.done { opacity: 0.45; }
+.g-pregunta.done::after {
+  content: '✓';
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  color: #25d366;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.g-q-text {
+  font-size: 0.92rem;
+  color: #e8eaf0;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-right: 24px;
+}
+
+.g-outcomes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.g-outcome {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.g-outcome.si { background: #1a3328; color: #4ade80; }
+.g-outcome.no { background: #2d1e1e; color: #f87171; }
+
+/* Trigger demo */
+.g-trigger {
+  font-size: 1rem;
+  color: #fbbf24;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+/* Objeciones */
+.g-objecion {
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #1e1e38;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.g-objecion:not(:last-child) { margin-bottom: 6px; }
+.g-objecion:hover { background: #27274a; }
+.g-objecion-q {
+  font-size: 0.85rem;
+  color: #f87171;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.g-objecion-r {
+  font-size: 0.85rem;
+  color: #86efac;
+  display: none;
+  line-height: 1.4;
+}
+.g-objecion.open .g-objecion-r { display: block; }
+.g-objecion-hint {
+  font-size: 0.7rem;
+  color: #555580;
+  margin-top: 2px;
+}
+.g-objecion.open .g-objecion-hint { display: none; }
+
+/* Cierre */
+.g-cierre {
+  font-size: 1rem;
+  color: #25d366;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+}

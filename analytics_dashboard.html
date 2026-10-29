@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard semanal — PilotoLocal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f5f5;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --accent: #25d366;
+    --accent-light: #e8faf0;
+    --border: #e5e7eb;
+    --up: #16a34a;
+    --down: #dc2626;
+    --bar1: #25d366;
+    --bar2: #34d399;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  header .back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  header h1 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  header .period {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Tab selector */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--border);
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+
+  .tab {
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.15s;
+  }
+
+  .tab.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  /* Cards grid */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .card-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card-value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .card-sub {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .badge-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--up);
+    background: #dcfce7;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  .badge-neutral {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--border);
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  /* Bar chart */
+  .chart-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .chart-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .chart-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 4px;
+  }
+
+  .chart-wrap {
+    overflow-x: auto;
+  }
+
+  /* Broadcasts row */
+  .broadcasts {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .broadcasts-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .broadcast-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .broadcast-item:last-child { border-bottom: none; }
+
+  .broadcast-name { font-size: 14px; font-weight: 500; }
+  .broadcast-date { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .broadcast-stats {
+    display: flex;
+    gap: 16px;
+    text-align: right;
+  }
+
+  .stat-num { font-size: 15px; font-weight: 700; }
+  .stat-label { font-size: 11px; color: var(--muted); }
+
+  /* Reviews row */
+  .reviews {
+    margin-top: 16px;
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .review-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .review-item:last-child { border-bottom: none; }
+
+  .review-stars { color: #f59e0b; font-size: 14px; flex-shrink: 0; }
+  .review-author { font-weight: 600; }
+  .review-text { color: var(--muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header style="margin-bottom:24px">
+    <a class="back" onclick="history.back()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver al mockup
+    </a>
+    <h1>📊 Dashboard semanal</h1>
+    <span class="period" id="period-label">28/10 – 3/11/2026</span>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setView('semana',this)">Esta semana</button>
+    <button class="tab" onclick="setView('mes',this)">Octubre</button>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="cards" id="cards-semana">
+    <!-- Pedidos -->
+    <div class="card">
+      <div class="card-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        Pedidos
+      </div>
+      <div class="card-value">23</div>
+      <div class="card-sub">
+        <span class="badge-up">↑ 15%</span>
+        &nbsp;vs semana anterior
+      </div>
+    </div>
+
+    <!-- Ventas -->
+    <div class="card">
+      <div class="card-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Ventas estimadas
+      </div>
+      <div class="card-value">€1.247</div>
+      <div class="card-sub">Ticket medio: <strong>€54</strong></div>
+    </div>
+
+    <!-- Novedades -->
+    <div class="card">
+      <div class="card-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 8.67 2 2 0 014.11 2.6l3-.06a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Novedades enviadas
+      </div>
+      <div class="card-value">2</div>
+      <div class="card-sub">Open rate: <strong>78%</strong> (37 de 47)</div>
+    </div>
+
+    <!-- Reseñas -->
+    <div class="card">
+      <div class="card-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Reseñas Google
+      </div>
+      <div class="card-value">+3</div>
+      <div class="card-sub">Promedio esta semana: <strong>⭐ 4.8</strong></div>
+    </div>
+  </div>
+
+  <!-- Bar chart — pedidos por día -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Pedidos por día</div>
+        <div class="chart-meta" id="chart-meta">Semana 28/10 – 3/11 · Total: 23</div>
+      </div>
+      <div class="chart-legend">
+        <span><span class="legend-dot" style="background:var(--bar1)"></span>Esta sem.</span>
+        <span><span class="legend-dot" style="background:#d1d5db"></span>Sem. ant.</span>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <svg id="bar-chart" width="100%" height="180" viewBox="0 0 560 180" preserveAspectRatio="xMidYMid meet">
+        <!-- Grid lines -->
+        <line x1="0" y1="20" x2="560" y2="20" stroke="#f3f4f6" stroke-width="1"/>
+        <line x1="0" y1="60" x2="560" y2="60" stroke="#f3f4f6" stroke-width="1"/>
+        <line x1="0" y1="100" x2="560" y2="100" stroke="#f3f4f6" stroke-width="1"/>
+        <line x1="0" y1="140" x2="560" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+
+        <!-- Y axis labels -->
+        <text x="0" y="23" fill="#9ca3af" font-size="11">8</text>
+        <text x="0" y="63" fill="#9ca3af" font-size="11">6</text>
+        <text x="0" y="103" fill="#9ca3af" font-size="11">4</text>
+        <text x="0" y="143" fill="#9ca3af" font-size="11">2</text>
+
+        <!-- Bars — this week (green) + prev week (gray) -->
+        <!-- Lun: 2 vs 2 -->
+        <rect x="28" y="120" width="24" height="20" rx="3" fill="#d1d5db"/>
+        <rect x="54" y="120" width="24" height="20" rx="3" fill="var(--bar1)"/>
+        <!-- Mar: 3 vs 4 -->
+        <rect x="108" y="100" width="24" height="40" rx="3" fill="#d1d5db"/>
+        <rect x="134" y="80" width="24" height="60" rx="3" fill="var(--bar1)"/>
+        <!-- Mié: 4 vs 3 -->
+        <rect x="188" y="80" width="24" height="60" rx="3" fill="#d1d5db"/>
+        <rect x="214" y="100" width="24" height="40" rx="3" fill="var(--bar1)"/>
+        <!-- Jue: 5 vs 4 -->
+        <rect x="268" y="60" width="24" height="80" rx="3" fill="#d1d5db"/>
+        <rect x="294" y="80" width="24" height="60" rx="3" fill="var(--bar1)"/>
+        <!-- Vie: 7 vs 5 -->
+        <rect x="348" y="20" width="24" height="120" rx="3" fill="#d1d5db"/>
+        <rect x="374" y="60" width="24" height="80" rx="3" fill="var(--bar1)"/>
+        <!-- Sáb: 2 vs 2 -->
+        <rect x="428" y="120" width="24" height="20" rx="3" fill="#d1d5db"/>
+        <rect x="454" y="120" width="24" height="20" rx="3" fill="var(--bar1)"/>
+
+        <!-- X axis labels -->
+        <text x="41" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Lun</text>
+        <text x="121" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Mar</text>
+        <text x="201" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Mié</text>
+        <text x="281" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Jue</text>
+        <text x="361" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Vie</text>
+        <text x="441" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Sáb</text>
+
+        <!-- Value labels on top of this-week bars -->
+        <text x="66" y="116" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">2</text>
+        <text x="146" y="76" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">4</text>
+        <text x="226" y="96" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">3</text>
+        <text x="306" y="76" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">4</text>
+        <text x="386" y="56" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">7</text>
+        <text x="466" y="116" fill="var(--text)" font-size="11" font-weight="600" text-anchor="middle">2</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Broadcasts -->
+  <div class="broadcasts">
+    <div class="broadcasts-title">📣 Novedades enviadas esta semana</div>
+    <div class="broadcast-item">
+      <div>
+        <div class="broadcast-name">Llegada de peonías</div>
+        <div class="broadcast-date">Lunes 28 Oct · 09:30</div>
+      </div>
+      <div class="broadcast-stats">
+        <div>
+          <div class="stat-num">47</div>
+          <div class="stat-label">enviados</div>
+        </div>
+        <div>
+          <div class="stat-num">37</div>
+          <div class="stat-label">abiertos</div>
+        </div>
+        <div>
+          <div class="stat-num" style="color:var(--up)">78%</div>
+          <div class="stat-label">open rate</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-item">
+      <div>
+        <div class="broadcast-name">Oferta fin de temporada</div>
+        <div class="broadcast-date">Miércoles 30 Oct · 17:00</div>
+      </div>
+      <div class="broadcast-stats">
+        <div>
+          <div class="stat-num">47</div>
+          <div class="stat-label">enviados</div>
+        </div>
+        <div>
+          <div class="stat-num">41</div>
+          <div class="stat-label">abiertos</div>
+        </div>
+        <div>
+          <div class="stat-num" style="color:var(--up)">87%</div>
+          <div class="stat-label">open rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="reviews">
+    <div class="broadcasts-title">⭐ Reseñas Google esta semana</div>
+    <div class="review-item">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div>
+        <div class="review-author">Laura G.</div>
+        <div class="review-text">El ramo llegó perfecto, exactamente lo que pedí. Muy recomendable.</div>
+      </div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div>
+        <div class="review-author">Carlos M.</div>
+        <div class="review-text">Marina es un encanto. Las peonías eran preciosas, repetiremos.</div>
+      </div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">⭐⭐⭐⭐</div>
+      <div>
+        <div class="review-author">Ana P.</div>
+        <div class="review-text">Muy buen servicio, rápido y con mucho detalle.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DATA = {
+    semana: {
+      period: '28/10 – 3/11/2026',
+      chartMeta: 'Semana 28/10 – 3/11 · Total: 23',
+    },
+    mes: {
+      period: 'Octubre 2026',
+      chartMeta: 'Octubre 2026 · Total: 81 pedidos',
+    }
+  };
+
+  function setView(view, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('period-label').textContent = DATA[view].period;
+    document.getElementById('chart-meta').textContent = DATA[view].chartMeta;
+
+    if (view === 'mes') {
+      // Swap chart to 4-week view
+      renderMonthChart();
+    } else {
+      renderWeekChart();
+    }
+  }
+
+  function renderWeekChart() {
+    const svg = document.getElementById('bar-chart');
+    svg.innerHTML = `
+      <line x1="0" y1="20" x2="560" y2="20" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="60" x2="560" y2="60" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="100" x2="560" y2="100" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="140" x2="560" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+      <text x="0" y="23" fill="#9ca3af" font-size="11">8</text>
+      <text x="0" y="63" fill="#9ca3af" font-size="11">6</text>
+      <text x="0" y="103" fill="#9ca3af" font-size="11">4</text>
+      <text x="0" y="143" fill="#9ca3af" font-size="11">2</text>
+      <rect x="28" y="120" width="24" height="20" rx="3" fill="#d1d5db"/>
+      <rect x="54" y="120" width="24" height="20" rx="3" fill="var(--bar1)"/>
+      <rect x="108" y="100" width="24" height="40" rx="3" fill="#d1d5db"/>
+      <rect x="134" y="80" width="24" height="60" rx="3" fill="var(--bar1)"/>
+      <rect x="188" y="80" width="24" height="60" rx="3" fill="#d1d5db"/>
+      <rect x="214" y="100" width="24" height="40" rx="3" fill="var(--bar1)"/>
+      <rect x="268" y="60" width="24" height="80" rx="3" fill="#d1d5db"/>
+      <rect x="294" y="80" width="24" height="60" rx="3" fill="var(--bar1)"/>
+      <rect x="348" y="20" width="24" height="120" rx="3" fill="#d1d5db"/>
+      <rect x="374" y="60" width="24" height="80" rx="3" fill="var(--bar1)"/>
+      <rect x="428" y="120" width="24" height="20" rx="3" fill="#d1d5db"/>
+      <rect x="454" y="120" width="24" height="20" rx="3" fill="var(--bar1)"/>
+      <text x="41" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Lun</text>
+      <text x="121" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Mar</text>
+      <text x="201" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Mié</text>
+      <text x="281" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Jue</text>
+      <text x="361" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Vie</text>
+      <text x="441" y="168" fill="#9ca3af" font-size="11" text-anchor="middle">Sáb</text>
+      <text x="66" y="116" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">2</text>
+      <text x="146" y="76" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">4</text>
+      <text x="226" y="96" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">3</text>
+      <text x="306" y="76" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">4</text>
+      <text x="386" y="56" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">7</text>
+      <text x="466" y="116" fill="#1a1a1a" font-size="11" font-weight="600" text-anchor="middle">2</text>
+    `;
+  }
+
+  function renderMonthChart() {
+    // 4 semanas del mes — pedidos: 18, 21, 19, 23
+    const svg = document.getElementById('bar-chart');
+    svg.innerHTML = `
+      <line x1="0" y1="20" x2="560" y2="20" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="60" x2="560" y2="60" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="100" x2="560" y2="100" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="0" y1="140" x2="560" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+      <text x="0" y="23" fill="#9ca3af" font-size="11">25</text>
+      <text x="0" y="63" fill="#9ca3af" font-size="11">20</text>
+      <text x="0" y="103" fill="#9ca3af" font-size="11">15</text>
+      <text x="0" y="143" fill="#9ca3af" font-size="11">10</text>
+      <rect x="60" y="48" width="80" height="92" rx="4" fill="var(--bar2)"/>
+      <rect x="190" y="16" width="80" height="124" rx="4" fill="var(--bar1)"/>
+      <rect x="320" y="36" width="80" height="104" rx="4" fill="var(--bar2)"/>
+      <rect x="450" y="4" width="80" height="136" rx="4" fill="var(--bar1)"/>
+      <text x="100" y="165" fill="#9ca3af" font-size="11" text-anchor="middle">Sem 1</text>
+      <text x="230" y="165" fill="#9ca3af" font-size="11" text-anchor="middle">Sem 2</text>
+      <text x="360" y="165" fill="#9ca3af" font-size="11" text-anchor="middle">Sem 3</text>
+      <text x="490" y="165" fill="#9ca3af" font-size="11" text-anchor="middle">Sem 4</text>
+      <text x="100" y="44" fill="#1a1a1a" font-size="12" font-weight="700" text-anchor="middle">18</text>
+      <text x="230" y="12" fill="#1a1a1a" font-size="12" font-weight="700" text-anchor="middle">21</text>
+      <text x="360" y="32" fill="#1a1a1a" font-size="12" font-weight="700" text-anchor="middle">19</text>
+      <text x="490" y="0" fill="#1a1a1a" font-size="12" font-weight="700" text-anchor="middle">23</text>
+    `;
+  }
+</script>
+
+</body>
+</html>

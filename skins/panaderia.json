@@ -1,0 +1,136 @@
+{
+  "slug": "panaderia",
+  "negocio_name": "Horno Artesano Lluna",
+  "negocio_emoji": "🥐",
+  "admin_name": "Panel panadería — tu asistente",
+  "owner_name": "Rosa",
+  "cliente_name": "Ana Ferrer",
+  "tono": "cálido-artesano",
+  "greeting_tag": "Pan de masa madre y tartas a encargo desde 1991",
+  "categorias": [
+    {
+      "key": "pan",
+      "label": "🥖 Pan artesano",
+      "sub": "masa madre, integral, espelta"
+    },
+    {
+      "key": "bolleria",
+      "label": "🥐 Bollería diaria",
+      "sub": "cruasanes, napolitanas, ensaimadas"
+    },
+    {
+      "key": "tartas",
+      "label": "🎂 Tartas a encargo",
+      "sub": "cumpleaños, bodas, comuniones"
+    },
+    {
+      "key": "dulces",
+      "label": "🍰 Pastas y dulces",
+      "sub": "roscos, tortas, magdalenas"
+    },
+    {
+      "key": "temporada",
+      "label": "🎄 Temporada",
+      "sub": "roscón Reyes, monas Pascua, turrones"
+    }
+  ],
+  "productos_sample": [
+    {
+      "id": "p1",
+      "cat": "tartas",
+      "img": "🎂",
+      "nombre": "Tarta personalizada 8 personas",
+      "precio": "desde 38€",
+      "variantes": "chocolate, fruta o mix · texto incluido"
+    },
+    {
+      "id": "p2",
+      "cat": "tartas",
+      "img": "🎂",
+      "nombre": "Tarta 3 pisos (boda/comunión)",
+      "precio": "desde 95€",
+      "variantes": "sabor a elegir · decoración personalizada"
+    },
+    {
+      "id": "p3",
+      "cat": "pan",
+      "img": "🥖",
+      "nombre": "Hogaza masa madre (800 g)",
+      "precio": "4,50€",
+      "variantes": "blanca o integral"
+    },
+    {
+      "id": "p4",
+      "cat": "temporada",
+      "img": "👑",
+      "nombre": "Roscón de Reyes (encargo)",
+      "precio": "desde 18€",
+      "variantes": "6, 8 o 12 personas · con/sin nata"
+    },
+    {
+      "id": "p5",
+      "cat": "bolleria",
+      "img": "🥐",
+      "nombre": "Caja surtida bollería (12 u.)",
+      "precio": "14€",
+      "variantes": "surtido clásico o sin gluten"
+    }
+  ],
+  "pregunta_variante_text": "¿Qué sabor y decoración te gustaría?",
+  "pregunta_fecha_text": "¿Para qué día necesitas el encargo?",
+  "cta_resena_text": "Si la tarta fue especial y los tuyos quedaron contentos, ¿nos dejas una reseña en Google? Nos ayuda a que más familias nos encuentren para sus momentos importantes.",
+  "novedad_sample": {
+    "titulo": "Roscones de Reyes 2027 — ¡ya puedes reservar! 👑",
+    "cuerpo": "Este año se agotan antes que nunca. Reserva tu roscón de 6, 8 o 12 personas ahora y lo recogiste el 5 de enero cuando quieras. Sin colas, sin sorpresas."
+  },
+  "producto_add_sample": {
+    "nombre": "Panettone artesano con pepitas de chocolate",
+    "precio": "12€",
+    "cat_label": "🎄 Temporada"
+  },
+  "guion": {
+    "entrada": "«Hola, soy Marc. Trabajo con panaderías artesanas para automatizar los encargos de WhatsApp. ¿Recibís muchos encargos de tartas, roscones o pan especial por WA?»",
+    "preguntas": [
+      {
+        "q": "¿Cuántos encargos por WA recibís a la semana?",
+        "si": "💚 Dolor confirmado — sigue",
+        "no": "¿Y por teléfono? ¿Los anotáis en papel o en el móvil?"
+      },
+      {
+        "q": "¿Quién responde los mensajes — solo el dueño / dueña?",
+        "si": "💚 Cuello de botella claro",
+        "no": "¿Y cuando esa persona está metiendo bandejas o de vacaciones?"
+      },
+      {
+        "q": "¿Os ha pasado ver un encargo que llegó de madrugada y ya era tarde para confirmarlo?",
+        "si": "🎯 BINGO — muestra la demo ahora",
+        "no": "¿En Navidad o temporada de comuniones os saturáis de mensajes?"
+      },
+      {
+        "q": "¿Tenéis web propia, o solo Instagram / WhatsApp?",
+        "si": "Tienen web — algo digitalizado ya",
+        "no": "💚 Todo manual — dolor digital extra"
+      }
+    ],
+    "demo_trigger": "«¿Te enseño en 1 minuto cómo un bot gestiona un encargo de tarta solo?»",
+    "objeciones": [
+      {
+        "o": "«Nosotros respondemos todo»",
+        "r": "«¿Y a las 2am cuando llega el encargo de la tarta de boda?»"
+      },
+      {
+        "o": "«Somos pocos, lo manejamos»",
+        "r": "«¿Y en Navidad con 40 roscones pedidos? ¿Cuántos mensajes al día?»"
+      },
+      {
+        "o": "«¿Cuánto cuesta?»",
+        "r": "«15 días gratis. Solo pagas si lo usas y te convence.»"
+      },
+      {
+        "o": "«No somos de tecnología»",
+        "r": "«Lo configuro yo con vuestro catálogo. Vosotros solo veis los pedidos llegar ordenados.»"
+      }
+    ],
+    "cierre": "«15 días gratis, yo lo configuro con vuestro catálogo en 1 hora. ¿Me das un número para llamarte esta semana?»"
+  }
+}
