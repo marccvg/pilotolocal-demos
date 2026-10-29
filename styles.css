@@ -834,3 +834,13 @@ body.nobezel .sheet-backdrop { border-radius: 0; }
   border-color: #f59e0b;
   font-weight: 700;
 }
+
+/* Mensajes de "texto libre" (cuando toca escribir, no botón) */
+.msg.free-text {
+  border-left: 3px solid #f59e0b;
+}
+.free-icon {
+  font-size: 0.75em;
+  opacity: 0.75;
+  margin-right: 2px;
+}
