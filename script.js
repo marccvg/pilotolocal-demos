@@ -129,7 +129,7 @@ function buildSteps(skin) {
     // ═════════════════════════════════════════════════════════
 
     { chat: 'switch', payload: 'patient' },
-    { chat: 'patient', action: 'date', payload: `DÍA 1 · CLIENTE ${client.toUpperCase()}` },
+    { chat: 'patient', action: 'date', payload: '💬 CLIENTE PIDIENDO' },
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
@@ -291,7 +291,7 @@ function buildSteps(skin) {
 
     // Notificación admin: encargo nuevo → confirmar + precio
     { chat: 'switch', payload: 'admin' },
-    { chat: 'admin', action: 'date', payload: 'ENCARGO NUEVO · 18:03' },
+    { chat: 'admin', action: 'date', payload: '🔔 LO VE EL PANADERO' },
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
@@ -488,19 +488,19 @@ function buildSteps(skin) {
     // stock_management · weekly_analytics · reserva_senal · push reseña
     // ═════════════════════════════════════════════════════════
 
-    // ─── C.0: Menú expandido día 2 ───
+    // ─── C.0: Menú de gestión diaria ───
     { chat: 'switch', payload: 'admin' },
-    { chat: 'admin', action: 'date', payload: 'DÍA 2 · FUNCIONES PREMIUM' },
+    { chat: 'admin', action: 'date', payload: '📦 GESTIÓN DIARIA' },
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `👋 <strong>¡Buenos días, ${owner}!</strong><br><br>Resumen de ayer: <strong>3 pedidos</strong> gestionados · <strong>2 reseñas</strong> generadas.<br><br>Nuevas funciones activas esta semana:`,
+      text: `¿Qué quieres gestionar?`,
       time: '09:00'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
       { text: '📦 Stock' },
+      { text: '📣 Enviar novedad' },
       { text: '📊 Esta semana' },
-      { text: '🎯 Reservas + señal' },
       { text: '⬅ Más opciones' },
     ]},
 
@@ -594,6 +594,42 @@ function buildSteps(skin) {
       { text: '⬅ Menú principal' },
     ]},
 
+    // ─── D.1: Admin envía novedad a clientes suscritos ───
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '📣 Enviar novedad', time: '09:30', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `📷 Envíame foto + un mensaje corto. Lo mando a tus <strong>47 suscriptores</strong> en WhatsApp.`,
+      time: '09:30'
+    }},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: `📎 [foto novedad.jpg]`, time: '09:31', read: true
+    }},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: `${nov.titulo}\n\n${nov.cuerpo}`, time: '09:31', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `✅ <strong>Enviado a 47 clientes</strong><br><br>Te aviso de respuestas aquí mismo.`,
+      time: '09:31'
+    }},
+    // Cliente recibe la novedad
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `📷 <strong>${nov.titulo}</strong><br><br>${nov.cuerpo}`,
+      time: '09:32'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Resérvame uno' },
+      { text: '👀 Ver más' },
+      { text: '⬅ Menú principal' },
+    ]},
+
     // ─── C.2: weekly_analytics ───
     { chat: 'admin', action: 'msg', payload: {
       dir: 'out', text: '📊 Esta semana', time: '10:00', read: true
@@ -625,7 +661,7 @@ function buildSteps(skin) {
 
     // ─── C.3: reserva_senal (encargo grande con anticipo Bizum) ───
     { chat: 'switch', payload: 'patient' },
-    { chat: 'patient', action: 'date', payload: 'ENCARGO GRANDE · SEÑAL DE RESERVA' },
+    { chat: 'patient', action: 'date', payload: '💸 ENCARGO GRANDE CON SEÑAL' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'out', text: '📦 Hacer encargo', time: '15:00', read: true
     }},
@@ -690,7 +726,7 @@ function buildSteps(skin) {
 
     // ─── C.4: Push reseña diferido (24h tras recogida) ───
     { chat: 'switch', payload: 'admin' },
-    { chat: 'admin', action: 'date', payload: 'ENTREGA + PUSH RESEÑA DIFERIDO' },
+    { chat: 'admin', action: 'date', payload: '✅ RECOGIDO · PIDE RESEÑA' },
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
@@ -717,7 +753,7 @@ function buildSteps(skin) {
       { text: '⬅ Menú principal' },
     ]},
     // 24h después: push enviado
-    { chat: 'admin', action: 'date', payload: '24H DESPUÉS · PUSH ENVIADO' },
+    { chat: 'admin', action: 'date', payload: '📤 MENSAJE DE RESEÑA' },
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
@@ -737,7 +773,29 @@ function buildSteps(skin) {
       time: '12:00'
     }},
     { chat: 'patient', action: 'url-button', payload: '⭐ Dejar reseña en Google' },
+
+    // ─── D.2: Cliente comparte / recomienda tras reseña ───
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `🙌 ¡Gracias ${clientFirst}! Reseña recibida ⭐⭐⭐⭐⭐<br><br>Si conoces a alguien a quien le gustaría ${g.toLowerCase()}, ¿nos recomiendas? Te enviamos un mensaje listo para compartir.`,
+      time: '12:02'
+    }},
     { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '📣 Compartir con un amig@' },
+      { text: '⬅ Menú principal' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '📣 Compartir con un amig@', time: '12:02', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `📩 <strong>Mensaje listo para reenviar</strong><br><br><em>"Te recomiendo ${g.toLowerCase()}. Puedes pedir por WhatsApp aquí: wa.me/346XXXXXXX"</em>`,
+      time: '12:02'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '↗️ Reenviar ahora' },
       { text: '⬅ Menú principal' },
     ]},
   ];
