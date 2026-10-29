@@ -80,7 +80,7 @@
   /* Dos botones por card */
   .card-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     border-top: 1px solid #2a2a2a;
     margin-top: auto;
   }
@@ -88,23 +88,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 11px 6px;
-    font-size: 0.82rem;
+    gap: 4px;
+    padding: 11px 4px;
+    font-size: 0.76rem;
     font-weight: 600;
     text-decoration: none;
     transition: background 0.15s;
     -webkit-tap-highlight-color: transparent;
-  }
-  .card-actions a:first-child {
     border-right: 1px solid #2a2a2a;
-    color: #25d366;
   }
-  .card-actions a:first-child:active { background: #1a2e1f; }
-  .card-actions a:last-child {
-    color: #60a5fa;
-  }
-  .card-actions a:last-child:active { background: #1a2035; }
+  .card-actions a:last-child { border-right: none; }
+  .card-actions a.demo { color: #25d366; }
+  .card-actions a.demo:active { background: #1a2e1f; }
+  .card-actions a.demox2 { color: #f59e0b; }
+  .card-actions a.demox2:active { background: #2e241a; }
+  .card-actions a.guion { color: #60a5fa; }
+  .card-actions a.guion:active { background: #1a2035; }
 
   footer {
     text-align: center;
@@ -130,8 +129,9 @@
       <div class="pain">Encargos Navidad, cestas empresa, tablas evento</div>
     </div>
     <div class="card-actions">
-      <a href="index.html?skin=charcuteria">📱 Demo</a>
-      <a href="index.html?skin=charcuteria&mode=guion">📋 Guión</a>
+      <a class="demo" href="index.html?skin=charcuteria">📱 Demo</a>
+      <a class="demox2" href="index.html?skin=charcuteria&autostart=1&speed=2">⚡ x2</a>
+      <a class="guion" href="index.html?skin=charcuteria&mode=guion">📋 Guión</a>
     </div>
   </div>
 
@@ -143,8 +143,9 @@
       <div class="pain">Tartas cumpleaños/bodas, roscones, pan masa madre</div>
     </div>
     <div class="card-actions">
-      <a href="index.html?skin=panaderia">📱 Demo</a>
-      <a href="index.html?skin=panaderia&mode=guion">📋 Guión</a>
+      <a class="demo" href="index.html?skin=panaderia">📱 Demo</a>
+      <a class="demox2" href="index.html?skin=panaderia&autostart=1&speed=2">⚡ x2</a>
+      <a class="guion" href="index.html?skin=panaderia&mode=guion">📋 Guión</a>
     </div>
   </div>
 
@@ -156,8 +157,9 @@
       <div class="pain">Reserva talla, consulta modelo, aviso llegada</div>
     </div>
     <div class="card-actions">
-      <a href="index.html?skin=zapateria">📱 Demo</a>
-      <a href="index.html?skin=zapateria&mode=guion">📋 Guión</a>
+      <a class="demo" href="index.html?skin=zapateria">📱 Demo</a>
+      <a class="demox2" href="index.html?skin=zapateria&autostart=1&speed=2">⚡ x2</a>
+      <a class="guion" href="index.html?skin=zapateria&mode=guion">📋 Guión</a>
     </div>
   </div>
 
@@ -169,8 +171,9 @@
       <div class="pain">Ramos urgentes, encargos bodas, consulta stock</div>
     </div>
     <div class="card-actions">
-      <a href="index.html?skin=floristeria">📱 Demo</a>
-      <a href="index.html?skin=floristeria&mode=guion">📋 Guión</a>
+      <a class="demo" href="index.html?skin=floristeria">📱 Demo</a>
+      <a class="demox2" href="index.html?skin=floristeria&autostart=1&speed=2">⚡ x2</a>
+      <a class="guion" href="index.html?skin=floristeria&mode=guion">📋 Guión</a>
     </div>
   </div>
 
@@ -182,8 +185,9 @@
       <div class="pain">¿Tenéis la M en azul? Aviso nueva colección</div>
     </div>
     <div class="card-actions">
-      <a href="index.html?skin=boutique">📱 Demo</a>
-      <a href="index.html?skin=boutique&mode=guion">📋 Guión</a>
+      <a class="demo" href="index.html?skin=boutique">📱 Demo</a>
+      <a class="demox2" href="index.html?skin=boutique&autostart=1&speed=2">⚡ x2</a>
+      <a class="guion" href="index.html?skin=boutique&mode=guion">📋 Guión</a>
     </div>
   </div>
 

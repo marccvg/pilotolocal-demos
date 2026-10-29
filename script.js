@@ -1267,6 +1267,7 @@ async function init() {
   if (params.get('clean') === '1') document.body.classList.add('clean');
   if (params.get('nobezel') === '1') document.body.classList.add('nobezel');
   if (params.get('dual') === '1') setTimeout(() => toggleDual(), 100);
+  if (params.get('speed') === '2') setTimeout(() => toggleSpeed(), 50);
   if (params.get('autostart') === '1') setTimeout(() => toggleAuto(), 1000);
   if (params.get('mode') === 'guion') setTimeout(() => openGuion(), 400);
 
