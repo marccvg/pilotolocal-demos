@@ -1204,7 +1204,7 @@ function toggleSpeed() {
 
 async function init() {
   try {
-    const r = await fetch(`skins/${skinName}.json`);
+    const r = await fetch(`skins/${skinName}.json`, { cache: 'no-store' });
     if (!r.ok) throw new Error(`skin "${skinName}" no encontrado`);
     SKIN = await r.json();
   } catch (err) {
