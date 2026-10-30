@@ -130,6 +130,7 @@ function buildStepsCitas(skin) {
   const MENU_CLIENTE = [
     { text: '📅 Reservar cita' },
     { text: '💰 Precios + servicios' },
+    { text: '🖼️ Galería trabajos' },
     { text: '📝 Mi próxima cita' },
     { text: '🔄 Repetir última' },
     { text: '❓ Preguntar' },
@@ -446,7 +447,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>Lo que acabas de ver es un ejemplo.</strong><br>Esto es todo lo que ${skin.admin_name.split(' ')[0]} gestiona por ti:<br><br>📅 <strong>Reservas 24/7</strong><br>⏰ <strong>Recordatorios 24h antes</strong><br>🔄 <strong>Mover y cancelar citas</strong><br>📝 <strong>Lista de espera opt-in</strong><br>👤 <strong>Ficha de cada clienta</strong> (historial, color, notas)<br>🎨 <strong>Catálogo + precios siempre al día</strong><br>⭐ <strong>Reseñas Google automáticas</strong><br>📊 <strong>Estadísticas día / semana / mes</strong><br>📣 <strong>Novedades y campañas</strong> (solo quien las pide)<br>🔁 <strong>Rebooking automático</strong> ("toca retoque")<br><br>Todo por el WhatsApp que ya usas. Sin apps extra.`,
+      text: `<strong>Lo que acabas de ver es un ejemplo.</strong><br>Esto es todo lo que tu asistente puede gestionar por ti:<br><br><strong>🗓️ AGENDA</strong><br>📅 Reservas 24/7<br>⏰ Recordatorios 24h antes<br>🔄 Mover y cancelar citas<br>📝 Lista de espera opt-in<br>🏖️ Vacaciones y horarios especiales<br><br><strong>👤 CLIENTAS</strong><br>📋 Ficha completa (color, alergias, notas)<br>📸 Fotos antes/después por clienta<br>🎂 Felicitación cumpleaños con oferta<br>💤 Reactivar clientas que no vuelven<br>🎁 Puntos de fidelidad (10ª cita gratis)<br><br><strong>📈 CRECIMIENTO</strong><br>🎨 Catálogo + precios siempre al día<br>🖼️ Galería pública de trabajos<br>⭐ Reseñas Google automáticas<br>🔁 Rebooking automático ("toca retoque")<br>📣 Novedades opt-in (solo quien las pide)<br>📊 Estadísticas día / semana / mes<br><br>Todo por el WhatsApp que ya usas. Sin apps extra.`,
       time: '13:00'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
