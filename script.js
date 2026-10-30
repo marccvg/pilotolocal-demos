@@ -153,7 +153,7 @@ function buildStepsCitas(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `👋 Hola, soy el asistente de <strong>${g}</strong>.<br><em>${skin.greeting_tag}</em><br><br>¿Qué necesitas?`,
+      text: `👋 ¡Hola <strong>${clientFirst}</strong>! Bienvenida de nuevo a <strong>${g}</strong>.<br><em>Tu última cita fue el 15 sept — balayage con ${peluquera} 💛</em><br><br>¿Qué necesitas?`,
       time: '17:30'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: MENU_CLIENTE },
@@ -243,22 +243,8 @@ function buildStepsCitas(skin) {
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿Me dices tu nombre?', time: '17:32'
-    }},
-    { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: client, time: '17:33', read: true, mark: 'free'
-    }},
-    { chat: 'patient', action: 'typing' },
-    { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: `Gracias ${clientFirst}. ¿Y tu móvil para el recordatorio?`, time: '17:33'
-    }},
-    { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: '666 123 456', time: '17:33', read: true, mark: 'free'
-    }},
-    { chat: 'patient', action: 'typing' },
-    { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `📋 <strong>Confirma tu cita</strong><br><br>${servA.img} ${servA.nombre}<br>Duración: ${servA.variantes_precio[1].opcion}<br>📅 ${dia} · 🕐 ${slotElegido}<br>✂️ Con ${peluquera}<br>👤 ${client} · 📱 666 123 456<br><br>──────────<br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
+      text: `📋 <strong>Confirma tu cita</strong><br><br>${servA.img} ${servA.nombre}<br>Duración: ${servA.variantes_precio[1].opcion}<br>📅 ${dia} · 🕐 ${slotElegido}<br>✂️ Con ${peluquera}<br>👤 ${client} ✓ <em>(datos ya guardados)</em><br><br>──────────<br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
       time: '17:33'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
@@ -285,7 +271,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🔔 <strong>Nueva cita</strong><br><br>${servA.img} ${servA.nombre}<br>📅 ${dia} · 🕐 ${slotElegido} (${servA.variantes_precio[1].opcion})<br>✂️ Contigo (${peluquera})<br>👤 ${client} · 📱 666 123 456<br><br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
+      text: `🔔 <strong>Nueva cita</strong><br><br>${servA.img} ${servA.nombre}<br>📅 ${dia} · 🕐 ${slotElegido} (${servA.variantes_precio[1].opcion})<br>✂️ Contigo (${peluquera})<br><br>👤 <strong>${client}</strong> · 📱 666 123 456<br>⭐ Clienta habitual · 7 visitas · última 15 sept<br>📝 <em>Prefiere balayage caliente · lavado con mascarilla hidratante</em><br><br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
       time: '17:33'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
@@ -529,6 +515,22 @@ function buildStepsCitas(skin) {
       { text: '↗️ Reenviar ahora' },
       { text: '⬅ Menú' },
     ]},
+
+    // ═════════════════════════════════════════════════════════
+    // 8. MAPA DE CAPACIDADES (resumen final — todo lo que gestiona)
+    // ═════════════════════════════════════════════════════════
+    { chat: 'switch', payload: 'admin' },
+    { chat: 'admin', action: 'date', payload: '🎯 TODO LO QUE GESTIONA' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `<strong>Lo que acabas de ver es un ejemplo.</strong><br>Esto es todo lo que ${skin.admin_name.split(' ')[0]} gestiona por ti:<br><br>📅 <strong>Reservas 24/7</strong><br>⏰ <strong>Recordatorios 24h antes</strong><br>🔄 <strong>Mover y cancelar citas</strong><br>📝 <strong>Lista de espera opt-in</strong><br>👤 <strong>Ficha de cada clienta</strong> (historial, color, notas)<br>🎨 <strong>Catálogo + precios siempre al día</strong><br>⭐ <strong>Reseñas Google automáticas</strong><br>📊 <strong>Estadísticas día / semana / mes</strong><br>📣 <strong>Novedades y campañas</strong> (solo quien las pide)<br>🔁 <strong>Rebooking automático</strong> ("toca retoque")<br><br>Todo por el WhatsApp que ya usas. Sin apps extra.`,
+      time: '13:00'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '✅ Me interesa, cuéntame más' },
+      { text: '⬅ Volver al inicio' },
+    ]},
   ];
 }
 
@@ -598,7 +600,7 @@ function buildStepsProducto(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `👋 Hola, soy el asistente de <strong>${g}</strong>.<br><em>${skin.greeting_tag}</em><br><br>¿Qué necesitas?`,
+      text: `👋 ¡Hola <strong>${clientFirst}</strong>! Bienvenida de nuevo a <strong>${g}</strong>.<br><em>Tu última cita fue el 15 sept — balayage con ${peluquera} 💛</em><br><br>¿Qué necesitas?`,
       time: '17:30'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: MENU_CLIENTE },
