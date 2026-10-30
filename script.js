@@ -139,7 +139,7 @@ function buildStepsCitas(skin) {
   const MENU_ADMIN = [
     { text: '📅 Agenda hoy' },
     { text: '📝 Lista de espera' },
-    { text: '👥 Clientas' },
+    { text: '👥 Clientes' },
     { text: '📊 Analítica' },
     { text: '⭐ Reseñas' },
     { text: '⚙️ Más' },
@@ -147,10 +147,10 @@ function buildStepsCitas(skin) {
 
   return [
     // ═════════════════════════════════════════════════════════
-    // 1. CLIENTA RESERVA CITA (botón-first)
+    // 1. CLIENTE RESERVA CITA (botón-first)
     // ═════════════════════════════════════════════════════════
     { chat: 'switch', payload: 'patient' },
-    { chat: 'patient', action: 'date', payload: '💬 CLIENTA RESERVANDO' },
+    { chat: 'patient', action: 'date', payload: '💬 CLIENTE RESERVANDO' },
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
@@ -282,7 +282,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🔔 <strong>Nueva cita</strong><br><br>${servA.img} ${servA.nombre}<br>📅 ${dia} · 🕐 ${slotElegido} (${servA.variantes_precio[1].opcion})<br>✂️ Contigo (${peluquera})<br><br>👤 <strong>${client}</strong> · 📱 666 123 456<br>⭐ Clienta habitual · 7 visitas · última 15 sept<br>📝 <em>Prefiere balayage caliente · lavado con mascarilla hidratante</em><br><br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
+      text: `🔔 <strong>Nueva cita</strong><br><br>${servA.img} ${servA.nombre}<br>📅 ${dia} · 🕐 ${slotElegido} (${servA.variantes_precio[1].opcion})<br>✂️ Contigo (${peluquera})<br><br>👤 <strong>${client}</strong> · 📱 666 123 456<br>⭐ Cliente habitual · 7 visitas · última 15 sept<br>📝 <em>Prefiere balayage caliente · lavado con mascarilla hidratante</em><br><br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
       time: '17:33'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
@@ -303,7 +303,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
 
     // ═════════════════════════════════════════════════════════
-    // 3. RECORDATORIO 24H ANTES (clienta recibe)
+    // 3. RECORDATORIO 24H ANTES (cliente recibe)
     // ═════════════════════════════════════════════════════════
     { chat: 'switch', payload: 'patient' },
     { chat: 'patient', action: 'date', payload: '📤 24H ANTES · RECORDATORIO' },
@@ -374,7 +374,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>📊 Esta semana</strong><br><br>📅 42 citas atendidas (+8 vs semana pasada)<br>💰 1.280€ facturado<br>🚫 2 no-shows (-5 vs antes del bot)<br>🎉 3 huecos rellenados = +72€<br>🏆 Top: Corte+lavado (14 citas)<br>⭐ 4 reseñas nuevas · 5★ todas<br>👥 2 clientas nuevas`,
+      text: `<strong>📊 Esta semana</strong><br><br>📅 42 citas atendidas (+8 vs semana pasada)<br>💰 1.280€ facturado<br>🚫 2 no-shows (-5 vs antes del bot)<br>🎉 3 huecos rellenados = +72€<br>🏆 Top: Corte+lavado (14 citas)<br>⭐ 4 reseñas nuevas · 5★ todas<br>👥 2 clientes nuevas`,
       time: '09:11'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
@@ -384,7 +384,7 @@ function buildStepsCitas(skin) {
     //    (sin interacción admin: todo automático)
     // ═════════════════════════════════════════════════════════
 
-    // ─── Clienta recibe push reseña 24h después ───
+    // ─── Cliente recibe push reseña 24h después ───
     { chat: 'switch', payload: 'patient' },
     { chat: 'patient', action: 'date', payload: '📤 24H DESPUÉS · RESEÑA' },
     { chat: 'patient', action: 'typing' },
@@ -428,7 +428,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>Lo que acabas de ver es un ejemplo.</strong><br>Esto es todo lo que tu asistente puede gestionar por ti:<br><br><strong>🗓️ AGENDA</strong><br>📅 Reservas 24/7<br>⏰ Recordatorios 24h antes<br>🔄 Mover y cancelar citas<br>📝 Lista de espera (solo quien lo pide)<br>🏖️ Vacaciones y horarios especiales<br><br><strong>👤 CLIENTAS</strong><br>📋 Ficha completa (color, alergias, notas)<br>📸 Fotos antes/después por clienta<br>🎂 Felicitación cumpleaños con oferta<br>💤 Reactivar clientas que no vuelven<br>🎁 Puntos de fidelidad (10ª cita gratis)<br><br><strong>📈 CRECIMIENTO</strong><br>🎨 Catálogo + precios siempre al día<br>🖼️ Galería pública de trabajos<br>⭐ Reseñas Google automáticas<br>🔁 Rebooking automático ("toca retoque")<br>📣 Novedades solo a clientas suscritas<br>📊 Estadísticas día / semana / mes<br><br>Todo por el WhatsApp que ya usas. Sin apps extra.`,
+      text: `<strong>Lo que acabas de ver es un ejemplo.</strong><br>Esto es todo lo que tu asistente puede gestionar por ti:<br><br><strong>🗓️ AGENDA</strong><br>📅 Reservas 24/7<br>⏰ Recordatorios 24h antes<br>🔄 Mover y cancelar citas<br>📝 Lista de espera (solo quien lo pide)<br>🏖️ Vacaciones y horarios especiales<br><br><strong>👤 CLIENTES</strong><br>📋 Ficha completa (color, alergias, notas)<br>📸 Fotos antes/después por cliente<br>🎂 Felicitación cumpleaños con oferta<br>💤 Reactivar clientes que no vuelven<br>🎁 Puntos de fidelidad (10ª cita gratis)<br><br><strong>📈 CRECIMIENTO</strong><br>🎨 Catálogo + precios siempre al día<br>🖼️ Galería pública de trabajos<br>⭐ Reseñas Google automáticas<br>🔁 Rebooking automático ("toca retoque")<br>📣 Novedades solo a clientes suscritas<br>📊 Estadísticas día / semana / mes<br><br>Todo por el WhatsApp que ya usas. Sin apps extra.`,
       time: '13:00'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
