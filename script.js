@@ -117,7 +117,11 @@ function buildStepsCitas(skin) {
   const clientFirst = client.split(' ')[0];
   const cats = skin.categorias;
   const servs = skin.productos_sample;
-  const servA = servs[0]; // Corte + lavado por defecto
+  // Categoría y servicio DEMO coherente (configurable desde skin)
+  const catDemoKey = skin.cat_demo || cats[0].key;
+  const catDemo = cats.find(c => c.key === catDemoKey) || cats[0];
+  const servsCat = servs.filter(x => x.cat === catDemo.key);
+  const servA = servs.find(x => x.id === skin.serv_demo_id) || servsCat[0] || servs[0];
   const slotsDia = skin.slots_demo || ['10:30', '11:30', '13:00', '16:30', '17:30'];
   const slotElegido = skin.slot_elegido || '11:30';
   const peluquera = skin.peluquera_demo || 'Laura';
@@ -167,23 +171,21 @@ function buildStepsCitas(skin) {
       sections: [{ header: 'Elige una', items: cats.map(c => ({ text: c.label, sub: c.sub })) }]
     }},
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: cats[0].label, time: '17:30', read: true
+      dir: 'out', text: catDemo.label, time: '17:30', read: true
     }},
     { chat: 'patient', action: 'typing' },
     (function(){
-      const catKey = cats[0].key;
-      const sc = servs.filter(x => x.cat === catKey);
+      const sc = servsCat;
       const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
       const listado = sc.map(x => `${x.img} <strong>${x.nombre}</strong> · ${priceLabel(x)}`).join('<br>');
       return { chat: 'patient', action: 'msg', payload: {
         dir: 'in',
-        text: `<strong>${cats[0].label}</strong><br><br>${listado}<br><br>Toca el servicio que quieras:`,
+        text: `<strong>${catDemo.label}</strong><br><br>${listado}<br><br>Toca el servicio que quieras:`,
         time: '17:31'
       }};
     })(),
     (function(){
-      const catKey = cats[0].key;
-      const sc = servs.filter(x => x.cat === catKey);
+      const sc = servsCat;
       const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
       return { chat: 'patient', action: 'list-message', payload: {
         btnText: 'Elegir servicio',

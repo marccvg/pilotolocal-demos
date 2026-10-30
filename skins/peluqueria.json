@@ -309,5 +309,7 @@
   ],
   "slot_elegido": "11:30",
   "peluquera_demo": "Laura",
-  "dia_demo": "Sábado"
+  "dia_demo": "Sábado",
+  "cat_demo": "mechas",
+  "serv_demo_id": "s5"
 }
