@@ -177,20 +177,10 @@ function buildStepsCitas(skin) {
     (function(){
       const sc = servsCat;
       const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
-      const listado = sc.map(x => `${x.img} <strong>${x.nombre}</strong> · ${priceLabel(x)}`).join('<br>');
-      return { chat: 'patient', action: 'msg', payload: {
-        dir: 'in',
-        text: `<strong>${catDemo.label}</strong><br><br>${listado}<br><br>Toca el servicio que quieras:`,
-        time: '17:31'
-      }};
-    })(),
-    (function(){
-      const sc = servsCat;
-      const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
       return { chat: 'patient', action: 'list-message', payload: {
-        btnText: 'Elegir servicio',
-        sheetTitle: 'Servicios',
-        sections: [{ header: 'Toca para reservar', items: sc.map(x => ({ text: `${x.img} ${x.nombre}`, sub: priceLabel(x) })) }]
+        btnText: `Ver ${catDemo.label.replace(/^[^\s]+ /,'').toLowerCase()}`,
+        sheetTitle: catDemo.label,
+        sections: [{ header: 'Toca el que quieras', items: sc.map(x => ({ text: `${x.img} ${x.nombre}`, sub: priceLabel(x) })) }]
       }};
     })(),
     { chat: 'patient', action: 'msg', payload: {
