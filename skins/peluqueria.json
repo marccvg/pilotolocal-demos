@@ -58,7 +58,8 @@
           "precio": 28,
           "precio_label": "28€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=250&fit=crop"
     },
     {
       "id": "s2",
@@ -78,7 +79,8 @@
           "precio": 22,
           "precio_label": "22€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=250&fit=crop"
     },
     {
       "id": "s3",
@@ -103,7 +105,8 @@
           "precio": 72,
           "precio_label": "72€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=250&fit=crop"
     },
     {
       "id": "s4",
@@ -118,7 +121,8 @@
           "precio": 28,
           "precio_label": "28€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=250&fit=crop"
     },
     {
       "id": "s5",
@@ -138,7 +142,8 @@
           "precio": 95,
           "precio_label": "95€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=250&fit=crop"
     },
     {
       "id": "s6",
@@ -158,7 +163,8 @@
           "precio": 110,
           "precio_label": "110€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=250&fit=crop"
     },
     {
       "id": "s7",
@@ -173,7 +179,8 @@
           "precio": 25,
           "precio_label": "25€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1552693673-1bf958298935?w=400&h=250&fit=crop"
     },
     {
       "id": "s8",
@@ -188,7 +195,8 @@
           "precio": 55,
           "precio_label": "55€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1526045478516-99145907023c?w=400&h=250&fit=crop"
     },
     {
       "id": "s9",
@@ -208,7 +216,8 @@
           "precio": 75,
           "precio_label": "75€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1521146764736-56c929d59c83?w=400&h=250&fit=crop"
     },
     {
       "id": "s10",
@@ -223,7 +232,8 @@
           "precio": 180,
           "precio_label": "180€"
         }
-      ]
+      ],
+      "img_url": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&h=250&fit=crop"
     }
   ],
   "producto_add_sample": {

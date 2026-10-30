@@ -190,7 +190,7 @@ function buildStepsCitas(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `${servA.img} <strong>${servA.nombre}</strong><br>${servA.precio}<br><em>${servA.variantes}</em>`,
+      text: (servA.img_url ? `<img src="${servA.img_url}" class="chat-img" alt="${servA.nombre}" loading="lazy"><br>` : '') + `${servA.img} <strong>${servA.nombre}</strong><br>${servA.precio}<br><em>${servA.variantes}</em>`,
       time: '17:31'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
@@ -380,28 +380,9 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
 
     // ═════════════════════════════════════════════════════════
-    // 7. POST-SERVICIO: RESEÑA + REFERIDO
+    // 7. POST-SERVICIO: RESEÑA AUTOMÁTICA + REFERIDO
+    //    (sin interacción admin: todo automático)
     // ═════════════════════════════════════════════════════════
-    { chat: 'admin', action: 'date', payload: '✅ CITA TERMINADA · PIDE RESEÑA' },
-    { chat: 'admin', action: 'typing' },
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'in',
-      text: `🔔 <strong>${clientFirst} ha terminado</strong><br><br>${servA.img} ${servA.nombre}<br><br>¿Marcar como completada?`,
-      time: '12:30'
-    }},
-    { chat: 'admin', action: 'reply-buttons', payload: [
-      { text: '✅ Completada' },
-      { text: '⏰ Agendar retoque 6 sem' },
-    ]},
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'out', text: '✅ Completada', time: '12:31', read: true
-    }},
-    { chat: 'admin', action: 'typing' },
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'in',
-      text: `✓ Cita cerrada. 💰 ${servA.variantes_precio[1].precio_label} cobrados.<br>⏳ Push reseña automático programado para mañana 10:00.`,
-      time: '12:31'
-    }},
 
     // ─── Clienta recibe push reseña 24h después ───
     { chat: 'switch', payload: 'patient' },

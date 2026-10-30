@@ -844,3 +844,15 @@ body.nobezel .sheet-backdrop { border-radius: 0; }
   opacity: 0.75;
   margin-right: 2px;
 }
+
+/* Imagen embedded dentro de mensaje chat */
+.msg.in .chat-img, .msg.out .chat-img {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 10px;
+  margin: -4px -2px 6px -2px;
+  object-fit: cover;
+  background: #e9edef;
+}
