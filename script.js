@@ -137,7 +137,7 @@ function buildStepsCitas(skin) {
   ];
   const MENU_ADMIN = [
     { text: '📅 Agenda hoy' },
-    { text: '📣 Rellenar hueco' },
+    { text: '📝 Lista de espera' },
     { text: '👥 Clientas' },
     { text: '📊 Analítica' },
     { text: '⭐ Reseñas' },
@@ -351,67 +351,94 @@ function buildStepsCitas(skin) {
       time: '09:00'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
-      { text: '📣 Rellenar 16:30' },
+      { text: '📝 Ver lista espera' },
       { text: '⬅ Menú' },
     ]},
 
     // ═════════════════════════════════════════════════════════
-    // 5. 🔥 RELLENAR HUECO LIBRE (killer feature)
+    // 5. 🔥 LISTA DE ESPERA OPT-IN (sin spam a nadie)
+    //    Cliente pide slot ocupado → se apunta voluntariamente →
+    //    si se libera, SOLO esa persona recibe aviso
     // ═════════════════════════════════════════════════════════
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'out', text: '📣 Rellenar 16:30', time: '09:01', read: true
-    }},
-    { chat: 'admin', action: 'typing' },
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'in',
-      text: `Tengo <strong>12 clientas en lista de espera</strong> para hoy.<br><br>Mensaje a enviar:<br><em>"Hola! Tenemos un hueco libre hoy a las 16:30. Si te viene, aviso. ✂️"</em><br><br>¿Enviar?`,
-      time: '09:01'
-    }},
-    { chat: 'admin', action: 'reply-buttons', payload: [
-      { text: '✅ Enviar a 12' },
-      { text: '✏️ Editar mensaje' },
-      { text: '❌ Dejar vacío' },
-    ]},
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'out', text: '✅ Enviar a 12', time: '09:01', read: true
-    }},
-    { chat: 'admin', action: 'typing' },
-    { chat: 'admin', action: 'msg', payload: {
-      dir: 'in',
-      text: `📤 <strong>Enviado a 12 clientas</strong>.<br>Te aviso aquí cuando responda la primera.`,
-      time: '09:01'
-    }},
 
-    // ─── Clienta recibe aviso de hueco ───
+    // ─── 5a. Otra clienta intenta reservar un slot que ya está ocupado ───
     { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'date', payload: '💬 OTRA CLIENTA RESERVANDO · slot ocupado' },
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `Hola! Tenemos un hueco libre <strong>hoy a las 16:30</strong>. Si te viene, aviso ✂️`,
-      time: '09:02'
+      text: `Lo siento, el <strong>sábado a las ${slotElegido}</strong> ya está ocupado 😔<br><br>¿Quieres que te avise automáticamente si se libera? Solo a ti, sin spam.`,
+      time: '10:00'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
-      { text: '✅ Me viene' },
-      { text: '❌ Hoy no' },
-      { text: '🕐 Dime más días' },
+      { text: '✅ Avísame si se libera' },
+      { text: '🕐 Otro hueco del sábado' },
+      { text: '📅 Otro día' },
     ]},
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: '✅ Me viene', time: '09:03', read: true
+      dir: 'out', text: '✅ Avísame si se libera', time: '10:00', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `✅ ¡Perfecto! Te apunto para hoy 16:30. Te mando recordatorio 1h antes.`,
-      time: '09:03'
+      text: `✓ Apuntada a lista de espera del <strong>sábado ${slotElegido}</strong>.<br><br>Si alguien cancela, te aviso <em>solo a ti</em>. No te mando nada más.`,
+      time: '10:00'
     }},
 
-    // ─── Admin recibe la respuesta ───
+    // ─── 5b. Admin ve la lista de espera por slot ───
     { chat: 'switch', payload: 'admin' },
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🎉 <strong>Hueco rellenado</strong><br><br>Carmen F. ha cogido las 16:30.<br>Facturación recuperada: <strong>+25€</strong><br><br>Las otras 11 reciben "Ya está cogido, te avisamos del próximo".`,
-      time: '09:03'
+      text: `📝 Nueva en lista de espera<br><br><strong>Sábado ${slotElegido}</strong> — Carmen F. (ya ocupada por ${clientFirst})<br><br>Total en espera para ese slot: <strong>2 clientas</strong>`,
+      time: '10:01'
+    }},
+
+    // ─── 5c. Días después: la clienta original cancela ───
+    { chat: 'admin', action: 'date', payload: '📅 DÍA ANTES · ' + clientFirst.toUpperCase() + ' CANCELA' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `⚠️ <strong>${clientFirst} ha cancelado</strong><br><br>Slot que se libera: Sábado ${slotElegido}<br><br>🔔 Hay 2 clientas en lista de espera. Aviso automáticamente a la primera (Carmen F.) — si no acepta en 2h, paso a la siguiente.`,
+      time: '18:00'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '✅ Avisar automáticamente' },
+      { text: '📞 Prefiero llamar yo' },
+    ]},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '✅ Avisar automáticamente', time: '18:00', read: true
+    }},
+
+    // ─── 5d. Carmen (la de la lista de espera) recibe el aviso ───
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `¡Carmen! 🎉 Se ha liberado el hueco que querías: <strong>sábado ${slotElegido}</strong>.<br><br>¿Lo cojo para ti? (Si no respondes en 2h, se lo paso a la siguiente de la lista)`,
+      time: '18:00'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Sí, resérvalo' },
+      { text: '❌ Ya no me interesa' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '✅ Sí, resérvalo', time: '18:01', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `✅ ¡Perfecto! Reservado sábado ${slotElegido}. Te mando recordatorio 24h antes como siempre 💛`,
+      time: '18:01'
+    }},
+
+    // ─── 5e. Admin ve el resultado ───
+    { chat: 'switch', payload: 'admin' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `🎉 <strong>Hueco rellenado automáticamente</strong><br><br>Carmen F. cogió sábado ${slotElegido} (${servA.variantes_precio[1].precio_label})<br>Facturación recuperada: <strong>+${servA.variantes_precio[1].precio_label}</strong><br><br>Zero mensajes mandados a quien no lo pidió ✓`,
+      time: '18:02'
     }},
 
     // ═════════════════════════════════════════════════════════
