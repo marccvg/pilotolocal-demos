@@ -263,6 +263,16 @@ function buildStepsCitas(skin) {
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
 
+    // Marta toca "⬅ Menú" y vuelve al menú principal
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '⬅ Menú', time: '17:34', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: `¿Algo más, ${clientFirst}?`, time: '17:34'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: MENU_CLIENTE },
+
     // ═════════════════════════════════════════════════════════
     // 2. VENDEDOR RECIBE LA CITA
     // ═════════════════════════════════════════════════════════
@@ -375,21 +385,20 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🔔 <strong>${clientFirst} ha terminado</strong><br><br>${servA.img} ${servA.nombre}<br><br>¿Marcar servicio?`,
+      text: `🔔 <strong>${clientFirst} ha terminado</strong><br><br>${servA.img} ${servA.nombre}<br><br>¿Marcar como completada?`,
       time: '12:30'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
-      { text: '✅ Terminado + push reseña' },
-      { text: '✅ Terminado (sin push)' },
+      { text: '✅ Completada' },
       { text: '⏰ Agendar retoque 6 sem' },
     ]},
     { chat: 'admin', action: 'msg', payload: {
-      dir: 'out', text: '✅ Terminado + push reseña', time: '12:31', read: true
+      dir: 'out', text: '✅ Completada', time: '12:31', read: true
     }},
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `✓ Cita cerrada. 💰 ${servA.variantes_precio[1].precio_label} cobrados.<br>⏳ Push reseña programado para mañana 10:00.`,
+      text: `✓ Cita cerrada. 💰 ${servA.variantes_precio[1].precio_label} cobrados.<br>⏳ Push reseña automático programado para mañana 10:00.`,
       time: '12:31'
     }},
 
