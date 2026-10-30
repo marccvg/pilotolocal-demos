@@ -249,12 +249,12 @@
     "entrada": "«Hola, soy Marc. Estoy hablando con peluquerías de Vila-real para entender cómo gestionáis citas y recordatorios. ¿Tenéis dos minutos?»",
     "preguntas": [
       {
-        "q": "¿Las clientas reservan por WhatsApp, teléfono o entran directo?",
+        "q": "¿Las clientes reservan por WhatsApp, teléfono o entran directo?",
         "si": "💚 WA → fit alto",
         "no": "Solo presencial / teléfono → oportunidad de digitalizar"
       },
       {
-        "q": "¿Qué pasa cuando una clienta NO viene a su cita (no-show)? ¿Es frecuente? ¿Cómo afecta?",
+        "q": "¿Qué pasa cuando un cliente NO viene a su cita? ¿Es frecuente? ¿Cómo os afecta?",
         "si": "🎯 Dolor real — anota cuántas al mes",
         "no": "¿Pedís señal o compromiso previo?"
       },
@@ -269,7 +269,7 @@
         "no": "Sin app → fit perfecto"
       },
       {
-        "q": "¿Cómo tenéis el catálogo de servicios + precios? ¿Las clientas los ven antes de llamar o preguntan cada vez?",
+        "q": "¿Cómo tenéis el catálogo de servicios + precios? ¿Las clientes los ven antes de llamar o preguntan cada vez?",
         "si": "💚 Preguntan precio → bot lo resuelve 24/7",
         "no": "Tienen web/IG con tarifas → integrar"
       },
@@ -288,19 +288,19 @@
     "objeciones": [
       {
         "o": "«Ya usamos Booksy»",
-        "r": "«¿Y cuánto pagáis? ¿Qué echáis en falta? El nuestro es más barato y la clienta no descarga app — reserva directo por WhatsApp, que ya usa.»"
+        "r": "«¿Y cuánto pagáis? ¿Qué echáis en falta? El nuestro es más barato y la cliente no descarga app — reserva directo por WhatsApp, que ya usa.»"
       },
       {
-        "o": "«Mis clientas son mayores, no usan apps»",
+        "o": "«Mis clientes son mayores, no usan apps»",
         "r": "«Por eso es WhatsApp — que ya usan. No es una app nueva. Es el mismo WA de siempre.»"
       },
       {
         "o": "«Preferimos trato personal»",
-        "r": "«El bot solo gestiona la cita. Cuando llega la clienta, la trato personal es toda tuya. Y te libera horas al teléfono.»"
+        "r": "«El bot solo gestiona la cita. Cuando llega la cliente, la trato personal es toda tuya. Y te libera horas al teléfono.»"
       },
       {
         "o": "«¿Cuánto cuesta?»",
-        "r": "«15 días gratis probándolo con tus clientas reales. Si funciona, decidimos precio — mucho menos que Booksy.»"
+        "r": "«15 días gratis probándolo con tus clientes reales. Si funciona, decidimos precio — mucho menos que Booksy.»"
       },
       {
         "o": "«No tengo tiempo para configurarlo»",

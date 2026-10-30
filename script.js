@@ -374,7 +374,7 @@ function buildStepsCitas(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>📊 Esta semana</strong><br><br>📅 42 citas atendidas (+8 vs semana pasada)<br>💰 1.280€ facturado<br>🚫 2 no-shows (-5 vs antes del bot)<br>🎉 3 huecos rellenados = +72€<br>🏆 Top: Corte+lavado (14 citas)<br>⭐ 4 reseñas nuevas · 5★ todas<br>👥 2 clientes nuevas`,
+      text: `<strong>📊 Esta semana</strong><br><br>📅 42 citas atendidas<br>💰 1.280€ facturado<br>🚫 2 no presentados<br>🎉 3 huecos rellenados<br>🏆 Top: Corte+lavado (14 citas)<br>⭐ 4 reseñas nuevas · 5★ todas<br>👥 2 clientes nuevas`,
       time: '09:11'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
@@ -812,7 +812,7 @@ function buildStepsProducto(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>📊 Hoy</strong><br><br>📦 3 encargos (+1 vs ayer)<br>💰 142€ facturado<br>🎂 Más pedido: ${prodA.nombre}<br>⭐ 1 reseña nueva (5★)<br>👥 1 cliente nuevo`,
+      text: `<strong>📊 Hoy</strong><br><br>📦 3 encargos<br>💰 142€ facturado<br>🎂 Más pedido: ${prodA.nombre}<br>⭐ 1 reseña nueva (5★)<br>👥 1 cliente nuevo`,
       time: '09:10'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
@@ -825,7 +825,7 @@ function buildStepsProducto(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `<strong>📊 Esta semana</strong><br><br>📦 11 encargos (+37% vs semana pasada)<br>💰 420€ facturado<br>🏆 ${prodA.nombre} (5)<br>⭐ 3 reseñas nuevas (5★·5★·4★)<br>👥 2 clientes nuevos`,
+      text: `<strong>📊 Esta semana</strong><br><br>📦 11 encargos<br>💰 420€ facturado<br>🏆 ${prodA.nombre} (5)<br>⭐ 3 reseñas nuevas (5★·5★·4★)<br>👥 2 clientes nuevos`,
       time: '09:11'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
