@@ -7,133 +7,222 @@
   "cliente_name": "Marta García",
   "greeting_tag": "Cortes, color y cuidado para ti",
   "cta_resena_text": "Si te quedó bien el pelo y te sentiste a gusto, ¿nos dejas una reseña en Google? Nos ayuda a que más gente nos encuentre.",
-  "labels": {
-    "accion_cliente": "📅 Reservar cita",
-    "pregunta_cat": "¿Qué tipo de servicio?",
-    "pregunta_variante": "¿Qué duración necesitas?",
-    "pregunta_fecha": "¿Qué día te viene bien?",
-    "opciones_fecha": ["Mañana", "Esta semana", "📅 Otra fecha"],
-    "pregunta_entrega": "¿A qué hora?",
-    "pregunta_pref": "¿Alguna preferencia o detalle?",
-    "opciones_pref": ["Como siempre", "Cambio de look", "Mi tono habitual", "✍️ Lo cuento"],
-    "label_pref_libre": "Corte midi · unos 3 dedos por encima del hombro · flequillo cortina",
-    "titulo_confirma": "Confirma tu cita",
-    "linea_resumen": "📅 Sábado 11:30 · ✂️ con Laura",
-    "nota_pref": "Corte midi + flequillo cortina",
-    "linea_entrega": "11:30 · 45 min",
-    "pretotal_variante": "Corte + lavado · <strong>22€</strong>",
-    "total_label": "TOTAL: 22€  ·  ⏱️ 45 min",
-    "confirmacion_cli": "Cita reservada",
-    "confirmacion_cli_sub": "Te mandamos recordatorio 24h antes. Si no puedes, avísanos aquí y liberamos el hueco",
-    "aviso_vendedor": "Nueva cita · Sábado 11:30",
-    "aviso_vendedor_detalle": "✂️ Corte + lavado · 22€<br>📅 Sábado 11:30 · 45 min<br>📝 Corte midi + flequillo cortina",
-    "emoji_entrega": "🕐",
-    "variante_elegida_label": "Corte + lavado · 22€"
-  },
   "categorias": [
-    { "key": "corte",     "label": "✂️ Corte",           "sub": "corte, lavado, peinado" },
-    { "key": "color",     "label": "🎨 Color",           "sub": "tinte raíz, color global" },
-    { "key": "mechas",    "label": "✨ Mechas",          "sub": "balayage, babylights, californianas" },
-    { "key": "tratamiento","label": "💆 Tratamientos",   "sub": "hidratación, botox capilar, keratina" },
-    { "key": "eventos",   "label": "💍 Peinados evento", "sub": "bodas, comuniones, invitadas" }
+    {
+      "key": "corte",
+      "label": "✂️ Corte",
+      "sub": "corte, lavado, peinado"
+    },
+    {
+      "key": "color",
+      "label": "🎨 Color",
+      "sub": "tinte raíz, color global"
+    },
+    {
+      "key": "mechas",
+      "label": "✨ Mechas",
+      "sub": "balayage, babylights, californianas"
+    },
+    {
+      "key": "tratamiento",
+      "label": "💆 Tratamientos",
+      "sub": "hidratación, botox capilar, keratina"
+    },
+    {
+      "key": "eventos",
+      "label": "💍 Peinados evento",
+      "sub": "bodas, comuniones, invitadas"
+    }
   ],
   "productos_sample": [
     {
-      "id": "s1", "cat": "corte", "img": "✂️",
+      "id": "s1",
+      "cat": "corte",
+      "img": "✂️",
       "nombre": "Corte + lavado + peinado",
       "precio": "22€",
       "variantes": "pelo corto, medio o largo · con secado",
       "variantes_precio": [
-        { "opcion": "Corto · 30 min",  "precio": 18, "precio_label": "18€" },
-        { "opcion": "Medio · 45 min",  "precio": 22, "precio_label": "22€" },
-        { "opcion": "Largo · 60 min",  "precio": 28, "precio_label": "28€" }
+        {
+          "opcion": "Corto · 30 min",
+          "precio": 18,
+          "precio_label": "18€"
+        },
+        {
+          "opcion": "Medio · 45 min",
+          "precio": 22,
+          "precio_label": "22€"
+        },
+        {
+          "opcion": "Largo · 60 min",
+          "precio": 28,
+          "precio_label": "28€"
+        }
       ]
     },
     {
-      "id": "s2", "cat": "corte", "img": "💇",
+      "id": "s2",
+      "cat": "corte",
+      "img": "💇",
       "nombre": "Corte caballero",
       "precio": "14€",
       "variantes": "clásico, moderno, con máquina",
       "variantes_precio": [
-        { "opcion": "Corte · 25 min", "precio": 14, "precio_label": "14€" },
-        { "opcion": "+ Arreglo barba · 40 min", "precio": 22, "precio_label": "22€" }
+        {
+          "opcion": "Corte · 25 min",
+          "precio": 14,
+          "precio_label": "14€"
+        },
+        {
+          "opcion": "+ Arreglo barba · 40 min",
+          "precio": 22,
+          "precio_label": "22€"
+        }
       ]
     },
     {
-      "id": "s3", "cat": "color", "img": "🎨",
+      "id": "s3",
+      "cat": "color",
+      "img": "🎨",
       "nombre": "Color global",
       "precio": "45€",
       "variantes": "tono completo, cobertura 100%",
       "variantes_precio": [
-        { "opcion": "Melena corta · 90 min",  "precio": 45, "precio_label": "45€" },
-        { "opcion": "Melena media · 2 h",     "precio": 58, "precio_label": "58€" },
-        { "opcion": "Melena larga · 2 h 30",  "precio": 72, "precio_label": "72€" }
+        {
+          "opcion": "Melena corta · 90 min",
+          "precio": 45,
+          "precio_label": "45€"
+        },
+        {
+          "opcion": "Melena media · 2 h",
+          "precio": 58,
+          "precio_label": "58€"
+        },
+        {
+          "opcion": "Melena larga · 2 h 30",
+          "precio": 72,
+          "precio_label": "72€"
+        }
       ]
     },
     {
-      "id": "s4", "cat": "color", "img": "🖌️",
+      "id": "s4",
+      "cat": "color",
+      "img": "🖌️",
       "nombre": "Retoque de raíz",
       "precio": "28€",
       "variantes": "solo raíz, 4-5 cm máximo",
       "variantes_precio": [
-        { "opcion": "Raíz · 60 min", "precio": 28, "precio_label": "28€" }
+        {
+          "opcion": "Raíz · 60 min",
+          "precio": 28,
+          "precio_label": "28€"
+        }
       ]
     },
     {
-      "id": "s5", "cat": "mechas", "img": "✨",
+      "id": "s5",
+      "cat": "mechas",
+      "img": "✨",
       "nombre": "Mechas balayage",
       "precio": "75€",
       "variantes": "degradado natural, varios tonos",
       "variantes_precio": [
-        { "opcion": "Melena media · 2 h 30",  "precio": 75,  "precio_label": "75€" },
-        { "opcion": "Melena larga · 3 h",      "precio": 95,  "precio_label": "95€" }
+        {
+          "opcion": "Melena media · 2 h 30",
+          "precio": 75,
+          "precio_label": "75€"
+        },
+        {
+          "opcion": "Melena larga · 3 h",
+          "precio": 95,
+          "precio_label": "95€"
+        }
       ]
     },
     {
-      "id": "s6", "cat": "mechas", "img": "💫",
+      "id": "s6",
+      "cat": "mechas",
+      "img": "💫",
       "nombre": "Mechas babylights",
       "precio": "85€",
       "variantes": "mechas finas iluminación natural",
       "variantes_precio": [
-        { "opcion": "Melena media · 3 h",   "precio": 85,  "precio_label": "85€" },
-        { "opcion": "Melena larga · 3 h 30","precio": 110, "precio_label": "110€" }
+        {
+          "opcion": "Melena media · 3 h",
+          "precio": 85,
+          "precio_label": "85€"
+        },
+        {
+          "opcion": "Melena larga · 3 h 30",
+          "precio": 110,
+          "precio_label": "110€"
+        }
       ]
     },
     {
-      "id": "s7", "cat": "tratamiento", "img": "💆",
+      "id": "s7",
+      "cat": "tratamiento",
+      "img": "💆",
       "nombre": "Tratamiento hidratación profunda",
       "precio": "25€",
       "variantes": "mascarilla + masaje capilar",
       "variantes_precio": [
-        { "opcion": "Sesión · 40 min", "precio": 25, "precio_label": "25€" }
+        {
+          "opcion": "Sesión · 40 min",
+          "precio": 25,
+          "precio_label": "25€"
+        }
       ]
     },
     {
-      "id": "s8", "cat": "tratamiento", "img": "🧪",
+      "id": "s8",
+      "cat": "tratamiento",
+      "img": "🧪",
       "nombre": "Botox capilar",
       "precio": "55€",
       "variantes": "pelo sano y brillante, 2-3 meses de efecto",
       "variantes_precio": [
-        { "opcion": "Sesión · 90 min", "precio": 55, "precio_label": "55€" }
+        {
+          "opcion": "Sesión · 90 min",
+          "precio": 55,
+          "precio_label": "55€"
+        }
       ]
     },
     {
-      "id": "s9", "cat": "eventos", "img": "💍",
+      "id": "s9",
+      "cat": "eventos",
+      "img": "💍",
       "nombre": "Peinado invitada boda",
       "precio": "45€",
       "variantes": "recogido, semirrecogido, ondas",
       "variantes_precio": [
-        { "opcion": "Peinado · 60 min",       "precio": 45, "precio_label": "45€" },
-        { "opcion": "Peinado + maquillaje · 90 min", "precio": 75, "precio_label": "75€" }
+        {
+          "opcion": "Peinado · 60 min",
+          "precio": 45,
+          "precio_label": "45€"
+        },
+        {
+          "opcion": "Peinado + maquillaje · 90 min",
+          "precio": 75,
+          "precio_label": "75€"
+        }
       ]
     },
     {
-      "id": "s10", "cat": "eventos", "img": "👰",
+      "id": "s10",
+      "cat": "eventos",
+      "img": "👰",
       "nombre": "Peinado novia (prueba + día)",
       "precio": "180€",
       "variantes": "prueba previa + peinado día boda incluido",
       "variantes_precio": [
-        { "opcion": "Pack completo", "precio": 180, "precio_label": "180€" }
+        {
+          "opcion": "Pack completo",
+          "precio": 180,
+          "precio_label": "180€"
+        }
       ]
     }
   ],
@@ -142,10 +231,6 @@
     "precio": "95€",
     "cat_label": "✨ Mechas"
   },
-  "entregas": [
-    { "opcion": "🕐 Mañana",    "precio": 0, "precio_label": "9:30 · 10:30 · 11:30 · 12:30" },
-    { "opcion": "🕐 Tarde",     "precio": 0, "precio_label": "16:30 · 17:30 · 18:30 · 19:30" }
-  ],
   "novedad_sample": {
     "titulo": "✨ Nueva técnica: Air Touch — ¡ya disponible!",
     "cuerpo": "Mechas que duran hasta 6 meses sin retoque, con un degradado super natural. Solo 2 citas por semana. ¿Te hago hueco?"
@@ -213,5 +298,16 @@
       }
     ],
     "cierre": "«15 días gratis sin cambiar nada. Yo configuro tus servicios, tus horarios y tus precios. ¿Me das un número para hablar esta semana?»"
-  }
+  },
+  "tipo": "citas",
+  "slots_demo": [
+    "10:30",
+    "11:30",
+    "13:00",
+    "16:30",
+    "17:30"
+  ],
+  "slot_elegido": "11:30",
+  "peluquera_demo": "Laura",
+  "dia_demo": "Sábado"
 }

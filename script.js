@@ -101,7 +101,422 @@ let dualMode = false;
 //   step 159-162 switch → admin · "pedidos pendientes" (lista 3)
 //   step 163-166 admin · selecciona pedido 1 + "listo + avisar"
 
+// Dispatcher: según skin.tipo escoge flow específico
 function buildSteps(skin) {
+  if (skin.tipo === 'citas') return buildStepsCitas(skin);
+  return buildStepsProducto(skin);
+}
+
+// ─────────────────────────────────────────────────────────────
+// FLOW CITAS (peluquería, estética, fisio) — reserva + recordatorio
+//   + rellenar hueco + reseña
+// ─────────────────────────────────────────────────────────────
+function buildStepsCitas(skin) {
+  const g = skin.negocio_name;
+  const client = skin.cliente_name;
+  const clientFirst = client.split(' ')[0];
+  const cats = skin.categorias;
+  const servs = skin.productos_sample;
+  const servA = servs[0]; // Corte + lavado por defecto
+  const slotsDia = skin.slots_demo || ['10:30', '11:30', '13:00', '16:30', '17:30'];
+  const slotElegido = skin.slot_elegido || '11:30';
+  const peluquera = skin.peluquera_demo || 'Laura';
+  const dia = skin.dia_demo || 'Sábado';
+
+  const MENU_CLIENTE = [
+    { text: '📅 Reservar cita' },
+    { text: '💰 Precios + servicios' },
+    { text: '📝 Mi próxima cita' },
+    { text: '🔄 Repetir última' },
+    { text: '❓ Preguntar' },
+    { text: '📍 Dónde estamos' },
+  ];
+  const MENU_ADMIN = [
+    { text: '📅 Agenda hoy' },
+    { text: '📣 Rellenar hueco' },
+    { text: '👥 Clientas' },
+    { text: '📊 Analítica' },
+    { text: '⭐ Reseñas' },
+    { text: '⚙️ Más' },
+  ];
+
+  return [
+    // ═════════════════════════════════════════════════════════
+    // 1. CLIENTA RESERVA CITA (botón-first)
+    // ═════════════════════════════════════════════════════════
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'date', payload: '💬 CLIENTA RESERVANDO' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `👋 Hola, soy el asistente de <strong>${g}</strong>.<br><em>${skin.greeting_tag}</em><br><br>¿Qué necesitas?`,
+      time: '17:30'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: MENU_CLIENTE },
+
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '📅 Reservar cita', time: '17:30', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Qué tipo de servicio?', time: '17:30'
+    }},
+    { chat: 'patient', action: 'list-message', payload: {
+      btnText: 'Ver categorías',
+      sheetTitle: 'Servicios',
+      sections: [{ header: 'Elige una', items: cats.map(c => ({ text: c.label, sub: c.sub })) }]
+    }},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: cats[0].label, time: '17:30', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    (function(){
+      const catKey = cats[0].key;
+      const sc = servs.filter(x => x.cat === catKey);
+      const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
+      const listado = sc.map(x => `${x.img} <strong>${x.nombre}</strong> · ${priceLabel(x)}`).join('<br>');
+      return { chat: 'patient', action: 'msg', payload: {
+        dir: 'in',
+        text: `<strong>${cats[0].label}</strong><br><br>${listado}<br><br>Toca el servicio que quieras:`,
+        time: '17:31'
+      }};
+    })(),
+    (function(){
+      const catKey = cats[0].key;
+      const sc = servs.filter(x => x.cat === catKey);
+      const priceLabel = x => (x.variantes_precio && x.variantes_precio.length > 1) ? `desde ${x.variantes_precio[0].precio_label}` : x.precio;
+      return { chat: 'patient', action: 'list-message', payload: {
+        btnText: 'Elegir servicio',
+        sheetTitle: 'Servicios',
+        sections: [{ header: 'Toca para reservar', items: sc.map(x => ({ text: `${x.img} ${x.nombre}`, sub: priceLabel(x) })) }]
+      }};
+    })(),
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: `${servA.img} ${servA.nombre}`, time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `${servA.img} <strong>${servA.nombre}</strong><br>${servA.precio}<br><em>${servA.variantes}</em>`,
+      time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Elegir este' },
+      { text: '⬅ Ver otros' },
+      { text: '⬅ Menú' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '✅ Elegir este', time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Qué duración?', time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: (servA.variantes_precio || [{opcion: servA.nombre, precio_label: servA.precio}]).slice(0, 4).map(v => ({ text: `${v.opcion} · ${v.precio_label}` })) },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: `${servA.variantes_precio[1].opcion} · ${servA.variantes_precio[1].precio_label}`, time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Qué día te viene bien?', time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: 'Mañana' },
+      { text: dia },
+      { text: 'Próxima semana' },
+      { text: '📅 Elegir fecha' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: dia, time: '17:31', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: `Estos son los huecos del ${dia.toLowerCase()}:`, time: '17:31'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: slotsDia.slice(0, 4).map(h => ({ text: `🕐 ${h}` })) },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: `🕐 ${slotElegido}`, time: '17:32', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Con qué peluquera prefieres?', time: '17:32'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: `${peluquera}` },
+      { text: 'Nuria' },
+      { text: 'Me es igual' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: peluquera, time: '17:32', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: '¿Me dices tu nombre?', time: '17:32'
+    }},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: client, time: '17:33', read: true, mark: 'free'
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: `Gracias ${clientFirst}. ¿Y tu móvil para el recordatorio?`, time: '17:33'
+    }},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '666 123 456', time: '17:33', read: true, mark: 'free'
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `📋 <strong>Confirma tu cita</strong><br><br>${servA.img} ${servA.nombre}<br>Duración: ${servA.variantes_precio[1].opcion}<br>📅 ${dia} · 🕐 ${slotElegido}<br>✂️ Con ${peluquera}<br>👤 ${client} · 📱 666 123 456<br><br>──────────<br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
+      time: '17:33'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Confirmar' },
+      { text: '✏️ Editar' },
+      { text: '❌ Cancelar' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '✅ Confirmar', time: '17:33', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `✅ <strong>Cita reservada</strong><br><br>Te mando recordatorio 24h antes para confirmar. Si no puedes venir, avísame aquí mismo y libero el hueco. Gracias ${clientFirst} 💛`,
+      time: '17:33'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
+
+    // ═════════════════════════════════════════════════════════
+    // 2. VENDEDOR RECIBE LA CITA
+    // ═════════════════════════════════════════════════════════
+    { chat: 'switch', payload: 'admin' },
+    { chat: 'admin', action: 'date', payload: '🔔 NUEVA CITA EN AGENDA' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `🔔 <strong>Nueva cita</strong><br><br>${servA.img} ${servA.nombre}<br>📅 ${dia} · 🕐 ${slotElegido} (${servA.variantes_precio[1].opcion})<br>✂️ Contigo (${peluquera})<br>👤 ${client} · 📱 666 123 456<br><br>Precio: <strong>${servA.variantes_precio[1].precio_label}</strong>`,
+      time: '17:33'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '✅ Confirmar' },
+      { text: '📅 Cambiar hora' },
+      { text: '📞 Llamar' },
+      { text: '🚫 Rechazar' },
+    ]},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '✅ Confirmar', time: '17:33', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `✓ Cita en agenda. ${clientFirst} ha recibido la confirmación.<br><br>⏰ Recordatorio automático programado para el ${dia.toLowerCase()} a las ${(parseInt(slotElegido)-24+'').padStart(2,'0') === 'NaN' ? '10:00' : '10:00'} del día antes.`,
+      time: '17:34'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
+
+    // ═════════════════════════════════════════════════════════
+    // 3. RECORDATORIO 24H ANTES (clienta recibe)
+    // ═════════════════════════════════════════════════════════
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'date', payload: '📤 24H ANTES · RECORDATORIO' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `Hola ${clientFirst} 👋<br><br>Recordatorio: mañana <strong>${dia.toLowerCase()}</strong> a las <strong>${slotElegido}</strong> tienes ${servA.nombre.toLowerCase()} con ${peluquera}.<br><br>¿Confirmas?`,
+      time: '10:00'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Confirmo' },
+      { text: '📅 Cambiar hora' },
+      { text: '❌ No podré' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '✅ Confirmo', time: '10:01', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in', text: `Perfecto, te esperamos ${clientFirst} 💛`, time: '10:01'
+    }},
+
+    // ═════════════════════════════════════════════════════════
+    // 4. VENDEDOR — MENÚ RAÍZ (gestión diaria)
+    // ═════════════════════════════════════════════════════════
+    { chat: 'switch', payload: 'admin' },
+    { chat: 'admin', action: 'date', payload: '📅 GESTIÓN DIARIA' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in', text: '¿Qué quieres hacer?', time: '09:00'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: MENU_ADMIN },
+
+    // ─── 4a. AGENDA HOY ───
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '📅 Agenda hoy', time: '09:00', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `<strong>📅 Hoy ${dia.toLowerCase()}</strong><br><br>🕐 10:30 — Carmen G. · Mechas balayage<br>🕐 ${slotElegido} — ${client} · ${servA.nombre}<br>🕐 13:00 — Nuria L. · Color global<br>⚠️ 16:30 — <em>HUECO LIBRE</em><br>🕐 17:30 — Patricia M. · Corte caballero<br>🕐 19:00 — Beatriz R. · Botox capilar<br><br>Facturación prevista: <strong>187€</strong>`,
+      time: '09:00'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '📣 Rellenar 16:30' },
+      { text: '⬅ Menú' },
+    ]},
+
+    // ═════════════════════════════════════════════════════════
+    // 5. 🔥 RELLENAR HUECO LIBRE (killer feature)
+    // ═════════════════════════════════════════════════════════
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '📣 Rellenar 16:30', time: '09:01', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `Tengo <strong>12 clientas en lista de espera</strong> para hoy.<br><br>Mensaje a enviar:<br><em>"Hola! Tenemos un hueco libre hoy a las 16:30. Si te viene, aviso. ✂️"</em><br><br>¿Enviar?`,
+      time: '09:01'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '✅ Enviar a 12' },
+      { text: '✏️ Editar mensaje' },
+      { text: '❌ Dejar vacío' },
+    ]},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '✅ Enviar a 12', time: '09:01', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `📤 <strong>Enviado a 12 clientas</strong>.<br>Te aviso aquí cuando responda la primera.`,
+      time: '09:01'
+    }},
+
+    // ─── Clienta recibe aviso de hueco ───
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `Hola! Tenemos un hueco libre <strong>hoy a las 16:30</strong>. Si te viene, aviso ✂️`,
+      time: '09:02'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '✅ Me viene' },
+      { text: '❌ Hoy no' },
+      { text: '🕐 Dime más días' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '✅ Me viene', time: '09:03', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `✅ ¡Perfecto! Te apunto para hoy 16:30. Te mando recordatorio 1h antes.`,
+      time: '09:03'
+    }},
+
+    // ─── Admin recibe la respuesta ───
+    { chat: 'switch', payload: 'admin' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `🎉 <strong>Hueco rellenado</strong><br><br>Carmen F. ha cogido las 16:30.<br>Facturación recuperada: <strong>+25€</strong><br><br>Las otras 11 reciben "Ya está cogido, te avisamos del próximo".`,
+      time: '09:03'
+    }},
+
+    // ═════════════════════════════════════════════════════════
+    // 6. ANALÍTICA
+    // ═════════════════════════════════════════════════════════
+    { chat: 'admin', action: 'reply-buttons', payload: [{ text: '📊 Analítica' }, { text: '⬅ Menú' }] },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '📊 Analítica', time: '09:10', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in', text: '¿Qué periodo?', time: '09:10'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: 'Hoy' },
+      { text: 'Esta semana' },
+      { text: 'Este mes' },
+      { text: '🏆 Top servicios' },
+    ]},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: 'Esta semana', time: '09:10', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `<strong>📊 Esta semana</strong><br><br>📅 42 citas atendidas (+8 vs semana pasada)<br>💰 1.280€ facturado<br>🚫 2 no-shows (-5 vs antes del bot)<br>🎉 3 huecos rellenados = +72€<br>🏆 Top: Corte+lavado (14 citas)<br>⭐ 4 reseñas nuevas · 5★ todas<br>👥 2 clientas nuevas`,
+      time: '09:11'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [{ text: '⬅ Menú' }] },
+
+    // ═════════════════════════════════════════════════════════
+    // 7. POST-SERVICIO: RESEÑA + REFERIDO
+    // ═════════════════════════════════════════════════════════
+    { chat: 'admin', action: 'date', payload: '✅ CITA TERMINADA · PIDE RESEÑA' },
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `🔔 <strong>${clientFirst} ha terminado</strong><br><br>${servA.img} ${servA.nombre}<br><br>¿Marcar servicio?`,
+      time: '12:30'
+    }},
+    { chat: 'admin', action: 'reply-buttons', payload: [
+      { text: '✅ Terminado + push reseña' },
+      { text: '✅ Terminado (sin push)' },
+      { text: '⏰ Agendar retoque 6 sem' },
+    ]},
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'out', text: '✅ Terminado + push reseña', time: '12:31', read: true
+    }},
+    { chat: 'admin', action: 'typing' },
+    { chat: 'admin', action: 'msg', payload: {
+      dir: 'in',
+      text: `✓ Cita cerrada. 💰 ${servA.variantes_precio[1].precio_label} cobrados.<br>⏳ Push reseña programado para mañana 10:00.`,
+      time: '12:31'
+    }},
+
+    // ─── Clienta recibe push reseña 24h después ───
+    { chat: 'switch', payload: 'patient' },
+    { chat: 'patient', action: 'date', payload: '📤 24H DESPUÉS · RESEÑA' },
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `Hola ${clientFirst} 👋 Ayer te atendimos.<br><br>${skin.cta_resena_text}`,
+      time: '10:00'
+    }},
+    { chat: 'patient', action: 'url-button', payload: '⭐ Dejar reseña en Google' },
+
+    // ─── Compartir / referido ───
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `🙌 ¡Gracias ${clientFirst}! Reseña recibida ⭐⭐⭐⭐⭐<br><br>Si conoces a alguien a quien le gustaría venir, ¿nos recomiendas?`,
+      time: '10:02'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '📣 Compartir con amig@' },
+      { text: '⬅ Menú' },
+    ]},
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'out', text: '📣 Compartir con amig@', time: '10:02', read: true
+    }},
+    { chat: 'patient', action: 'typing' },
+    { chat: 'patient', action: 'msg', payload: {
+      dir: 'in',
+      text: `📩 <strong>Mensaje listo para reenviar</strong><br><br><em>"Te recomiendo ${g.toLowerCase()}. Puedes reservar cita por WhatsApp aquí: wa.me/346XXXXXXX"</em>`,
+      time: '10:02'
+    }},
+    { chat: 'patient', action: 'reply-buttons', payload: [
+      { text: '↗️ Reenviar ahora' },
+      { text: '⬅ Menú' },
+    ]},
+  ];
+}
+
+// ─────────────────────────────────────────────────────────────
+// FLOW PRODUCTO (panadería, charcutería, zapatería, floristería, boutique)
+// ─────────────────────────────────────────────────────────────
+function buildStepsProducto(skin) {
   const g = skin.negocio_name;
   const client = skin.cliente_name;
   const clientFirst = client.split(' ')[0];
