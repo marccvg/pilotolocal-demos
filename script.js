@@ -1184,6 +1184,11 @@ async function init() {
     const r = await fetch(`skins/${skinName}.json`, { cache: 'no-store' });
     if (!r.ok) throw new Error(`skin "${skinName}" no encontrado`);
     SKIN = await r.json();
+    // Overrides por URL: ?nombre=XXX override negocio_name
+    const nomOverride = params.get('nombre');
+    if (nomOverride) SKIN.negocio_name = nomOverride;
+    const adminOverride = params.get('admin');
+    if (adminOverride) SKIN.admin_name = adminOverride;
   } catch (err) {
     console.error('[pilotolocal] fallo cargando skin:', err);
     el.chat.innerHTML = `<div class="msg in"><strong>❌ Error:</strong> no encontré el skin <code>${skinName}</code>.<br>Prueba <code>?skin=floristeria</code>.</div>`;
