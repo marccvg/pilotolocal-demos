@@ -1,0 +1,217 @@
+{
+  "slug": "peluqueria",
+  "negocio_name": "Tu peluquería",
+  "negocio_emoji": "✂️",
+  "admin_name": "Panel peluquería — tu asistente",
+  "owner_name": "Laura",
+  "cliente_name": "Marta García",
+  "greeting_tag": "Cortes, color y cuidado para ti",
+  "cta_resena_text": "Si te quedó bien el pelo y te sentiste a gusto, ¿nos dejas una reseña en Google? Nos ayuda a que más gente nos encuentre.",
+  "labels": {
+    "accion_cliente": "📅 Reservar cita",
+    "pregunta_cat": "¿Qué tipo de servicio?",
+    "pregunta_variante": "¿Qué duración necesitas?",
+    "pregunta_fecha": "¿Qué día te viene bien?",
+    "opciones_fecha": ["Mañana", "Esta semana", "📅 Otra fecha"],
+    "pregunta_entrega": "¿A qué hora?",
+    "pregunta_pref": "¿Alguna preferencia o detalle?",
+    "opciones_pref": ["Como siempre", "Cambio de look", "Mi tono habitual", "✍️ Lo cuento"],
+    "label_pref_libre": "Corte midi · unos 3 dedos por encima del hombro · flequillo cortina",
+    "titulo_confirma": "Confirma tu cita",
+    "linea_resumen": "📅 Sábado 11:30 · ✂️ con Laura",
+    "nota_pref": "Corte midi + flequillo cortina",
+    "linea_entrega": "11:30 · 45 min",
+    "pretotal_variante": "Corte + lavado · <strong>22€</strong>",
+    "total_label": "TOTAL: 22€  ·  ⏱️ 45 min",
+    "confirmacion_cli": "Cita reservada",
+    "confirmacion_cli_sub": "Te mandamos recordatorio 24h antes. Si no puedes, avísanos aquí y liberamos el hueco",
+    "aviso_vendedor": "Nueva cita · Sábado 11:30",
+    "aviso_vendedor_detalle": "✂️ Corte + lavado · 22€<br>📅 Sábado 11:30 · 45 min<br>📝 Corte midi + flequillo cortina",
+    "emoji_entrega": "🕐",
+    "variante_elegida_label": "Corte + lavado · 22€"
+  },
+  "categorias": [
+    { "key": "corte",     "label": "✂️ Corte",           "sub": "corte, lavado, peinado" },
+    { "key": "color",     "label": "🎨 Color",           "sub": "tinte raíz, color global" },
+    { "key": "mechas",    "label": "✨ Mechas",          "sub": "balayage, babylights, californianas" },
+    { "key": "tratamiento","label": "💆 Tratamientos",   "sub": "hidratación, botox capilar, keratina" },
+    { "key": "eventos",   "label": "💍 Peinados evento", "sub": "bodas, comuniones, invitadas" }
+  ],
+  "productos_sample": [
+    {
+      "id": "s1", "cat": "corte", "img": "✂️",
+      "nombre": "Corte + lavado + peinado",
+      "precio": "22€",
+      "variantes": "pelo corto, medio o largo · con secado",
+      "variantes_precio": [
+        { "opcion": "Corto · 30 min",  "precio": 18, "precio_label": "18€" },
+        { "opcion": "Medio · 45 min",  "precio": 22, "precio_label": "22€" },
+        { "opcion": "Largo · 60 min",  "precio": 28, "precio_label": "28€" }
+      ]
+    },
+    {
+      "id": "s2", "cat": "corte", "img": "💇",
+      "nombre": "Corte caballero",
+      "precio": "14€",
+      "variantes": "clásico, moderno, con máquina",
+      "variantes_precio": [
+        { "opcion": "Corte · 25 min", "precio": 14, "precio_label": "14€" },
+        { "opcion": "+ Arreglo barba · 40 min", "precio": 22, "precio_label": "22€" }
+      ]
+    },
+    {
+      "id": "s3", "cat": "color", "img": "🎨",
+      "nombre": "Color global",
+      "precio": "45€",
+      "variantes": "tono completo, cobertura 100%",
+      "variantes_precio": [
+        { "opcion": "Melena corta · 90 min",  "precio": 45, "precio_label": "45€" },
+        { "opcion": "Melena media · 2 h",     "precio": 58, "precio_label": "58€" },
+        { "opcion": "Melena larga · 2 h 30",  "precio": 72, "precio_label": "72€" }
+      ]
+    },
+    {
+      "id": "s4", "cat": "color", "img": "🖌️",
+      "nombre": "Retoque de raíz",
+      "precio": "28€",
+      "variantes": "solo raíz, 4-5 cm máximo",
+      "variantes_precio": [
+        { "opcion": "Raíz · 60 min", "precio": 28, "precio_label": "28€" }
+      ]
+    },
+    {
+      "id": "s5", "cat": "mechas", "img": "✨",
+      "nombre": "Mechas balayage",
+      "precio": "75€",
+      "variantes": "degradado natural, varios tonos",
+      "variantes_precio": [
+        { "opcion": "Melena media · 2 h 30",  "precio": 75,  "precio_label": "75€" },
+        { "opcion": "Melena larga · 3 h",      "precio": 95,  "precio_label": "95€" }
+      ]
+    },
+    {
+      "id": "s6", "cat": "mechas", "img": "💫",
+      "nombre": "Mechas babylights",
+      "precio": "85€",
+      "variantes": "mechas finas iluminación natural",
+      "variantes_precio": [
+        { "opcion": "Melena media · 3 h",   "precio": 85,  "precio_label": "85€" },
+        { "opcion": "Melena larga · 3 h 30","precio": 110, "precio_label": "110€" }
+      ]
+    },
+    {
+      "id": "s7", "cat": "tratamiento", "img": "💆",
+      "nombre": "Tratamiento hidratación profunda",
+      "precio": "25€",
+      "variantes": "mascarilla + masaje capilar",
+      "variantes_precio": [
+        { "opcion": "Sesión · 40 min", "precio": 25, "precio_label": "25€" }
+      ]
+    },
+    {
+      "id": "s8", "cat": "tratamiento", "img": "🧪",
+      "nombre": "Botox capilar",
+      "precio": "55€",
+      "variantes": "pelo sano y brillante, 2-3 meses de efecto",
+      "variantes_precio": [
+        { "opcion": "Sesión · 90 min", "precio": 55, "precio_label": "55€" }
+      ]
+    },
+    {
+      "id": "s9", "cat": "eventos", "img": "💍",
+      "nombre": "Peinado invitada boda",
+      "precio": "45€",
+      "variantes": "recogido, semirrecogido, ondas",
+      "variantes_precio": [
+        { "opcion": "Peinado · 60 min",       "precio": 45, "precio_label": "45€" },
+        { "opcion": "Peinado + maquillaje · 90 min", "precio": 75, "precio_label": "75€" }
+      ]
+    },
+    {
+      "id": "s10", "cat": "eventos", "img": "👰",
+      "nombre": "Peinado novia (prueba + día)",
+      "precio": "180€",
+      "variantes": "prueba previa + peinado día boda incluido",
+      "variantes_precio": [
+        { "opcion": "Pack completo", "precio": 180, "precio_label": "180€" }
+      ]
+    }
+  ],
+  "producto_add_sample": {
+    "nombre": "Mechas Air Touch (técnica nueva)",
+    "precio": "95€",
+    "cat_label": "✨ Mechas"
+  },
+  "entregas": [
+    { "opcion": "🕐 Mañana",    "precio": 0, "precio_label": "9:30 · 10:30 · 11:30 · 12:30" },
+    { "opcion": "🕐 Tarde",     "precio": 0, "precio_label": "16:30 · 17:30 · 18:30 · 19:30" }
+  ],
+  "novedad_sample": {
+    "titulo": "✨ Nueva técnica: Air Touch — ¡ya disponible!",
+    "cuerpo": "Mechas que duran hasta 6 meses sin retoque, con un degradado super natural. Solo 2 citas por semana. ¿Te hago hueco?"
+  },
+  "guion": {
+    "entrada": "«Hola, soy Marc. Estoy hablando con peluquerías de Vila-real para entender cómo gestionáis citas y recordatorios. ¿Tenéis dos minutos?»",
+    "preguntas": [
+      {
+        "q": "¿Las clientas reservan por WhatsApp, teléfono o entran directo?",
+        "si": "💚 WA → fit alto",
+        "no": "Solo presencial / teléfono → oportunidad de digitalizar"
+      },
+      {
+        "q": "¿Qué pasa cuando una clienta NO viene a su cita (no-show)? ¿Es frecuente? ¿Cómo afecta?",
+        "si": "🎯 Dolor real — anota cuántas al mes",
+        "no": "¿Pedís señal o compromiso previo?"
+      },
+      {
+        "q": "¿Hacéis recordatorio el día antes o confiais en que vendrá?",
+        "si": "💚 Manual → ahorro de tiempo claro",
+        "no": "Si automático: ¿con qué?"
+      },
+      {
+        "q": "¿Habéis probado Booksy, Treatwell, Fresha u otra app? ¿Qué pagáis al mes? ¿Qué os molesta?",
+        "si": "🎯 CRUCIAL — anota literal lo que dice. Si usan Booksy: eres complemento, no sustituto. Si no usan ninguna: eres sustituto perfecto",
+        "no": "Sin app → fit perfecto"
+      },
+      {
+        "q": "¿Cómo tenéis el catálogo de servicios + precios? ¿Las clientas los ven antes de llamar o preguntan cada vez?",
+        "si": "💚 Preguntan precio → bot lo resuelve 24/7",
+        "no": "Tienen web/IG con tarifas → integrar"
+      },
+      {
+        "q": "¿Hacéis algo para pedir reseñas Google o depende de que las dejen solas?",
+        "si": "💚 Nada activo → bot pide reseña al día siguiente (killer)",
+        "no": "Ya tienen método → preguntar cuál"
+      },
+      {
+        "q": "¿Hay algún problema que os quite tiempo o estrés en el día a día? Lo que sea",
+        "si": "🎯 Dolor espontáneo revelado — anota literal",
+        "no": "Si nada → preguntar por huecos vacíos entre citas"
+      }
+    ],
+    "demo_trigger": "«¿Te enseño en 1 minuto cómo quedaría un bot gestionando cita, recordatorio y reseña?»",
+    "objeciones": [
+      {
+        "o": "«Ya usamos Booksy»",
+        "r": "«¿Y cuánto pagáis? ¿Qué echáis en falta? El nuestro es más barato y la clienta no descarga app — reserva directo por WhatsApp, que ya usa.»"
+      },
+      {
+        "o": "«Mis clientas son mayores, no usan apps»",
+        "r": "«Por eso es WhatsApp — que ya usan. No es una app nueva. Es el mismo WA de siempre.»"
+      },
+      {
+        "o": "«Preferimos trato personal»",
+        "r": "«El bot solo gestiona la cita. Cuando llega la clienta, la trato personal es toda tuya. Y te libera horas al teléfono.»"
+      },
+      {
+        "o": "«¿Cuánto cuesta?»",
+        "r": "«15 días gratis probándolo con tus clientas reales. Si funciona, decidimos precio — mucho menos que Booksy.»"
+      },
+      {
+        "o": "«No tengo tiempo para configurarlo»",
+        "r": "«Lo configuro yo con tus servicios y precios. 1 hora de mi tiempo, cero del tuyo.»"
+      }
+    ],
+    "cierre": "«15 días gratis sin cambiar nada. Yo configuro tus servicios, tus horarios y tus precios. ¿Me das un número para hablar esta semana?»"
+  }
+}

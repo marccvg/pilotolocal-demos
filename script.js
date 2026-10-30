@@ -108,13 +108,39 @@ function buildSteps(skin) {
   const cats = skin.categorias;
   const p = skin.productos_sample;
   const nov = skin.novedad_sample;
-  const prodA = p[0];     // tarta personalizada 8p
-  const prodHogaza = p[2]; // hogaza masa madre
+  const prodA = p[0];
+  const prodHogaza = p[2] || p[1];
+
+  // Labels configurables por skin (defaults = producto/encargo)
+  const L = Object.assign({
+    accion_cliente:   '📦 Hacer encargo',
+    pregunta_cat:     '¿De qué categoría?',
+    pregunta_variante:'¿Para cuántas personas?',
+    pregunta_fecha:   '¿Para cuándo la necesitas?',
+    opciones_fecha:   ['Mañana', 'Fin de semana', '📅 Otra fecha'],
+    pregunta_entrega: '¿Dónde la quieres?',
+    skip_entrega:     false,
+    pregunta_pref:    '¿Qué sabor prefieres?',
+    opciones_pref:    ['Chocolate', 'Fruta', 'Mix', '✍️ Lo escribo'],
+    label_pref_libre: 'Chocolate con fresas · texto "Feliz Cumple Luis"',
+    titulo_confirma:  'Confirma tu encargo',
+    linea_resumen:    '📅 Sábado · 🛵 Envío a domicilio',
+    nota_pref:        'Chocolate con fresas, "Feliz Cumple Luis"',
+    linea_entrega:    'Envío a domicilio · +3€',
+    pretotal_variante:'Tarta 12 personas · <strong>52€</strong><br>Envío a domicilio · <strong>3€</strong>',
+    total_label:      'TOTAL: 55€',
+    confirmacion_cli: 'Encargo recibido',
+    confirmacion_cli_sub: 'Te avisamos aquí mismo cuando esté listo',
+    aviso_vendedor:   'Nuevo encargo · 55€',
+    aviso_vendedor_detalle: `${prodA.img} ${prodA.nombre} — 12 personas · 52€<br>📅 Sábado · 🛵 Envío a domicilio · +3€<br>📝 Chocolate con fresas, "Feliz Cumple Luis"`,
+    emoji_entrega:    '🛵',
+    variante_elegida_label: '12 personas · 52€',
+  }, skin.labels || {});
 
   // Menús raíz reutilizables
   const MENU_CLIENTE = [
     { text: '🛍️ Ver productos' },
-    { text: '📦 Hacer encargo' },
+    { text: L.accion_cliente },
     { text: '🕐 Horario' },
     { text: '📍 Dónde estamos' },
     { text: '❓ Preguntar' },
@@ -145,11 +171,11 @@ function buildSteps(skin) {
 
     // Cliente elige "Hacer encargo"
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: '📦 Hacer encargo', time: '17:30', read: true
+      dir: 'out', text: L.accion_cliente, time: '17:30', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿De qué categoría?', time: '17:30'
+      dir: 'in', text: L.pregunta_cat, time: '17:30'
     }},
     { chat: 'patient', action: 'list-message', payload: {
       btnText: 'Ver categorías',
@@ -206,52 +232,42 @@ function buildSteps(skin) {
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿Para cuántas personas?', time: '17:31'
+      dir: 'in', text: L.pregunta_variante, time: '17:31'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: (prodA.variantes_precio || [{opcion:'estándar',precio_label:prodA.precio}]).slice(0,4).map(v => ({ text: `${v.opcion} · ${v.precio_label}` })) },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: `12 personas · 52€`, time: '17:31', read: true
+      dir: 'out', text: L.variante_elegida_label, time: '17:31', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿Para cuándo la necesitas?', time: '17:31'
+      dir: 'in', text: L.pregunta_fecha, time: '17:31'
     }},
-    { chat: 'patient', action: 'reply-buttons', payload: [
-      { text: 'Mañana' },
-      { text: 'Fin de semana' },
-      { text: '📅 Otra fecha' },
-      { text: '⬅ Volver' },
-    ]},
+    { chat: 'patient', action: 'reply-buttons', payload: [...L.opciones_fecha.map(f => ({ text: f })), { text: '⬅ Volver' }] },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: 'Fin de semana', time: '17:31', read: true
+      dir: 'out', text: L.opciones_fecha[1] || L.opciones_fecha[0], time: '17:31', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿Dónde la quieres?', time: '17:31'
+      dir: 'in', text: L.pregunta_entrega, time: '17:31'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: (skin.entregas || [{opcion:'🏪 Recoger en tienda',precio_label:'gratis'}]).map(e => ({ text: `${e.opcion} · ${e.precio_label}` })) },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: '🛵 Envío a domicilio · +3€', time: '17:31', read: true
+      dir: 'out', text: (skin.entregas && skin.entregas[1]) ? `${skin.entregas[1].opcion} · ${skin.entregas[1].precio_label}` : L.linea_entrega, time: '17:31', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'in', text: '¿Qué sabor prefieres?', time: '17:31'
+      dir: 'in', text: L.pregunta_pref, time: '17:31'
     }},
-    { chat: 'patient', action: 'reply-buttons', payload: [
-      { text: 'Chocolate' },
-      { text: 'Fruta' },
-      { text: 'Mix' },
-      { text: '✍️ Lo escribo' },
-    ]},
+    { chat: 'patient', action: 'reply-buttons', payload: L.opciones_pref.map(o => ({ text: o })) },
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: '✍️ Lo escribo', time: '17:32', read: true
+      dir: 'out', text: L.opciones_pref[L.opciones_pref.length-1], time: '17:32', read: true
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in', text: '✍️ Cuéntame cómo la quieres', time: '17:32'
     }},
     { chat: 'patient', action: 'msg', payload: {
-      dir: 'out', text: 'Chocolate con fresas · texto "Feliz Cumple Luis"', time: '17:32', read: true, mark: 'free'
+      dir: 'out', text: L.label_pref_libre, time: '17:32', read: true, mark: 'free'
     }},
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
@@ -270,7 +286,7 @@ function buildSteps(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `📋 <strong>Confirma tu encargo</strong><br><br>${prodA.img} ${prodA.nombre} — 12 personas<br>📅 Sábado · 🛵 Envío a domicilio<br>📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456<br><br>──────────<br>Tarta 12 personas · <strong>52€</strong><br>Envío a domicilio · <strong>3€</strong><br><strong>TOTAL: 55€</strong>`,
+      text: `📋 <strong>${L.titulo_confirma}</strong><br><br>${prodA.img} ${prodA.nombre} — ${L.variante_elegida_label}<br>${L.linea_resumen}<br>📝 ${L.nota_pref}<br>👤 ${client} · 📱 666 123 456<br><br>──────────<br>${L.pretotal_variante}<br><strong>${L.total_label}</strong>`,
       time: '17:33'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [
@@ -284,7 +300,7 @@ function buildSteps(skin) {
     { chat: 'patient', action: 'typing' },
     { chat: 'patient', action: 'msg', payload: {
       dir: 'in',
-      text: `✅ <strong>Encargo recibido</strong><br><br>Te avisamos aquí mismo cuando esté listo. Gracias ${clientFirst} 💛`,
+      text: `✅ <strong>${L.confirmacion_cli}</strong><br><br>${L.confirmacion_cli_sub}. Gracias ${clientFirst} 💛`,
       time: '17:33'
     }},
     { chat: 'patient', action: 'reply-buttons', payload: [{ text: '⬅ Menú principal' }] },
@@ -297,7 +313,7 @@ function buildSteps(skin) {
     { chat: 'admin', action: 'typing' },
     { chat: 'admin', action: 'msg', payload: {
       dir: 'in',
-      text: `🔔 <strong>Nuevo encargo · 55€</strong><br><br>${prodA.img} ${prodA.nombre} — 12 personas · 52€<br>📅 Sábado · 🛵 Envío a domicilio · +3€<br>📝 Chocolate con fresas, "Feliz Cumple Luis"<br>👤 ${client} · 📱 666 123 456<br><br>Cliente ya ha visto el precio total y lo acepta ✓`,
+      text: `🔔 <strong>${L.aviso_vendedor}</strong><br><br>${L.aviso_vendedor_detalle}<br>👤 ${client} · 📱 666 123 456<br><br>Cliente ya ha visto el precio total y lo acepta ✓`,
       time: '17:33'
     }},
     { chat: 'admin', action: 'reply-buttons', payload: [
